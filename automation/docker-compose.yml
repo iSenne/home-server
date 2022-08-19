@@ -3,8 +3,9 @@ version: '3.8'
 # Basic Home Assistant setup
 services:
   homeassistant:
-    image: homeassistant/home-assistant:latest
+    image: ghcr.io/home-assistant/home-assistant:stable
     container_name: homeassistant
+    tty: true
     restart: unless-stopped
     privileged: true
     network_mode: host
@@ -12,5 +13,6 @@ services:
       - TZ=${TZ}
     volumes:
       - ./hassio/config:/config
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - ${HA_PORT}:${HA_PORT}
