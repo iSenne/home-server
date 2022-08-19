@@ -62,8 +62,6 @@ services:
     image: codercom/code-server:latest
     container_name: vscode
     restart: unless-stopped
-#    command: code-server --auth password --disable-telemetry /home/coder/project
-    user: root:root
     environment:
       - PASSWORD=${VSCODE_PASSWORD}
       - DOCKER_USER=${VSCODE_USER}
