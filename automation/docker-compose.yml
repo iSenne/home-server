@@ -31,23 +31,23 @@ services:
 #      - ${Z2M_DEVICE}:/dev/ttyUSB0
       - ${Z2M_DEVICE}:/dev/ttyACM0
 
-#  mariadb:
-#    image: mariadb:10.7
-#    container_name: mariadb
-#    restart: unless-stopped
-#    environment:
-#      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-#      - MYSQL_DATABASE=${MYSQL_DATABASE}
-#      - MYSQL_USER=${MYSQL_USERNAME}
-#      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-#      - TZ=${TZ}
-#    volumes:
-#      - ./mariadb/data:/var/lib/mysql
-#    ports:
-#      - ${MYSQL_PORT}:${MYSQL_PORT}
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USERNAME}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - TZ=${TZ}
+    volumes:
+      - ./mariadb/data:/var/lib/mysql
+    ports:
+      - ${MYSQL_PORT}:${MYSQL_PORT}
 
   mqtt:
-    image: eclipse-mosquitto:2.0
+    image: eclipse-mosquitto:latest
     container_name: mqtt
     restart: unless-stopped
     ports:
@@ -57,3 +57,19 @@ services:
       - ./mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf
       - ./mqtt/data:/mosquitto/data
       - ./mqtt/log:/mosquitto/log
+
+  vscode:
+    image: codercom/code-server:latest
+    container_name: vscode
+    restart: unless-stopped
+    command: code-server --auth password --disable-telemetry /home/coder/project
+    user: ${VSCODE_USER}:${VSCODE_USER}
+    environment:
+      - PASSWORD=${VSCODE_PASSWORD}
+    volumes:
+      - ./../hassio:/home/coder/project/hassio
+      - ./../mqtt:/home/coder/project/mqtt
+      - ./../zigbee2mqtt/data:/home/coder/project/zigbee2mqtt
+      - ./vscode:/home/coder
+    expose:
+      - ${VSCODE_PORT}
