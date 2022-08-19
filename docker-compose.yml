@@ -10,7 +10,7 @@ services:
     privileged: true
     network_mode: host
     depends_on:
-      - mysql
+      - mariadb
       - zigbee2mqtt
     environment:
       - TZ=${TZ}
