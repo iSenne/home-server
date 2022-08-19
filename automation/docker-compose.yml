@@ -68,6 +68,10 @@ services:
     container_name: vscode
     restart: unless-stopped
     user: ${VSCODE_USER}:${VSCODE_USER}
+    depends_on:
+      - homeassistant
+      - zigbee2mqtt
+      - mqtt
     environment:
       - PASSWORD=${VSCODE_PASSWORD}
       - DOCKER_USER=${VSCODE_USER}
