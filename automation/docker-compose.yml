@@ -41,13 +41,13 @@ services:
     container_name: mariadb
     restart: unless-stopped
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD}"
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USERNAME}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_PASSWORD="${MYSQL_PASSWORD}"
       - TZ=${TZ}
     volumes:
-      - ./mariadb/data:/var/lib/mysql
+      - ./mariadb:/var/lib/mysql
     ports:
       - ${MYSQL_PORT}:${MYSQL_PORT}
 
