@@ -9,6 +9,9 @@ services:
     restart: unless-stopped
     privileged: true
     network_mode: host
+    depends_on:
+      - mysql
+      - zigbee2mqtt
     environment:
       - TZ=${TZ}
     volumes:
@@ -21,6 +24,8 @@ services:
     image: koenkk/zigbee2mqtt:latest
     container_name: zigbee2mqtt
     restart: unless-stopped
+    depends_on:
+      - mqtt
     environment:
       - TZ=${TZ}
     ports:
@@ -62,6 +67,7 @@ services:
     image: codercom/code-server:latest
     container_name: vscode
     restart: unless-stopped
+    user: ${VSCODE_USER}:${VSCODE_USER}
     environment:
       - PASSWORD=${VSCODE_PASSWORD}
       - DOCKER_USER=${VSCODE_USER}
