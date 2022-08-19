@@ -19,6 +19,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
     ports:
       - ${HA_PORT}:${HA_PORT}
+    devices:
+      - ${HA_RF_DEVICE}:/dev/ttyACM0
 
   zigbee2mqtt:
     image: koenkk/zigbee2mqtt:latest
@@ -33,7 +35,6 @@ services:
     volumes:
       - ./zigbee2mqtt:/app/data
     devices:
-#      - ${Z2M_DEVICE}:/dev/ttyUSB0
       - ${Z2M_DEVICE}:/dev/ttyACM0
 
   mariadb:
