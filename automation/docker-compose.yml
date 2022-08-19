@@ -67,9 +67,9 @@ services:
     environment:
       - PASSWORD=${VSCODE_PASSWORD}
     volumes:
-      - ./../hassio:/home/coder/project/hassio
-      - ./../mqtt:/home/coder/project/mqtt
-      - ./../zigbee2mqtt/data:/home/coder/project/zigbee2mqtt
+      - ./hassio:/home/coder/project/hassio
+      - ./mqtt:/home/coder/project/mqtt
+      - ./zigbee2mqtt/data:/home/coder/project/zigbee2mqtt
       - ./vscode:/home/coder
     expose:
       - ${VSCODE_PORT}
