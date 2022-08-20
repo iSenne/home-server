@@ -2,6 +2,21 @@ version: '3.8'
 
 # Basic Home Assistant setup
 services:
+  traefik:
+    container_name: traefik
+    image: traefik:latest
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
   homeassistant:
     image: ghcr.io/home-assistant/home-assistant:stable
     container_name: homeassistant
@@ -21,6 +36,10 @@ services:
       - ${HA_PORT}:${HA_PORT}
     devices:
       - ${HA_RF_DEVICE}:/dev/ttyACM0
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ha.rule=Host(`ha.punter3.nl`)"
+      - "traefik.http.routers.ha.entrypoints=web"
 
   zigbee2mqtt:
     image: koenkk/zigbee2mqtt:latest
@@ -36,6 +55,10 @@ services:
       - ./zigbee2mqtt:/app/data
     devices:
       - ${Z2M_DEVICE}:/dev/ttyACM0
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.z2m.rule=Host(`z2m.punter3.nl`)"
+      - "traefik.http.routers.z2m.entrypoints=web"
 
   mariadb:
     image: mariadb:latest
@@ -84,3 +107,7 @@ services:
       - ./vscode:/home/coder/project
     ports:
       - ${VSCODE_PORT}:${VSCODE_PORT}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.code.rule=Host(`code.punter3.nl`)"
+      - "traefik.http.routers.code.entrypoints=web"
