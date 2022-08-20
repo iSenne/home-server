@@ -73,6 +73,7 @@ services:
       - "traefik.http.routers.z2m.rule=Host(`z2m.punter3.nl`)"
       - "traefik.http.routers.z2m.entrypoints=websecure"
       - "traefik.http.routers.z2m.tls.certresolver=myresolver"
+      - "traefik.http.middlewares.z2m.basicauth.users=admin:$$2a$$13$$SW2XJ4f06oP98u5t4P7l0eWrOFAA2EHJvM4dvmXnP1oVupaR06XHu"
 
   mariadb:
     image: mariadb:latest
