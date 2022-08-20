@@ -25,6 +25,8 @@ services:
     volumes:
       - ./letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    extra_hosts:
+      - host.docker.internal:172.17.0.1
 
   homeassistant:
     image: ghcr.io/home-assistant/home-assistant:stable
@@ -51,7 +53,6 @@ services:
       - "traefik.http.routers.ha.entrypoints=websecure"
       - "traefik.http.routers.ha.tls.certresolver=myresolver"
       - "traefik.http.services.ha.loadbalancer.server.port=8123"
-
 
   zigbee2mqtt:
     image: koenkk/zigbee2mqtt:latest
