@@ -10,18 +10,19 @@ services:
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web.address=:${HTTP_PORT}"
       - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
       - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
       - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
-      - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.websecure.address=:${HTTPS_PORT}"
       - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-      - "--certificatesresolvers.myresolver.acme.email=isenne@outlook.com"
+      - "--certificatesresolvers.myresolver.acme.email=${HTTPS_EMAIL}"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+#      - "--middlewares.z2m.basicauth.users=admin:$$2a$$13$$SW2XJ4f06oP98u5t4P7l0eWrOFAA2EHJvM4dvmXnP1oVupaR06XHu"
     ports:
-      - "80:80"
-      - "443:443"
-      - "8080:8080"
+      - ${HTTP_PORT}:${HTTP_PORT}
+      - ${HTTPS_PORT}:${HTTPS_PORT}
+      - ${TRAEFIK_PORT}:${TRAEFIK_PORT}
     volumes:
       - ./letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -49,10 +50,10 @@ services:
       - ${HA_RF_DEVICE}:/dev/ttyACM0
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.ha.rule=Host(`ha.punter3.nl`)"
+      - "traefik.http.routers.ha.rule=Host(`${HA_DOMAIN}`)"
       - "traefik.http.routers.ha.entrypoints=websecure"
       - "traefik.http.routers.ha.tls.certresolver=myresolver"
-      - "traefik.http.services.ha.loadbalancer.server.port=8123"
+      - "traefik.http.services.ha.loadbalancer.server.port=${HA_PORT}"
 
   zigbee2mqtt:
     image: koenkk/zigbee2mqtt:latest
@@ -70,7 +71,7 @@ services:
       - ${Z2M_DEVICE}:/dev/ttyACM0
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.z2m.rule=Host(`z2m.punter3.nl`)"
+      - "traefik.http.routers.z2m.rule=Host(`${Z2M_DOMAIN}`)"
       - "traefik.http.routers.z2m.entrypoints=websecure"
       - "traefik.http.routers.z2m.tls.certresolver=myresolver"
 
@@ -123,6 +124,6 @@ services:
       - ${VSCODE_PORT}:${VSCODE_PORT}
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.code.rule=Host(`code.punter3.nl`)"
+      - "traefik.http.routers.code.rule=Host(`${VSCODE_DOMAIN}`)"
       - "traefik.http.routers.code.entrypoints=websecure"
       - "traefik.http.routers.code.tls.certresolver=myresolver"
