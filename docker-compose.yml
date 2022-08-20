@@ -13,6 +13,9 @@ services:
       - mariadb
       - zigbee2mqtt
     environment:
+      - VIRTUAL_HOST=${HA_DOMAIN}
+      - VIRTUAL_PORT=${HA_PORT}
+      - LETSENCRYPT_HOST=${HA_DOMAIN}
       - TZ=${TZ}
     volumes:
       - ./hassio:/config
@@ -29,6 +32,9 @@ services:
     depends_on:
       - mqtt
     environment:
+      - VIRTUAL_HOST=${Z2M_DOMAIN}
+      - VIRTUAL_PORT=${Z2M_PORT}
+      - LETSENCRYPT_HOST=${Z2M_DOMAIN}
       - TZ=${TZ}
     ports:
       - ${Z2M_PORT}:${Z2M_PORT}
@@ -74,6 +80,9 @@ services:
       - zigbee2mqtt
       - mqtt
     environment:
+      - VIRTUAL_HOST=${VSCODE_DOMAIN}
+      - VIRTUAL_PORT=${VSCODE_PORT}
+      - LETSENCRYPT_HOST=${VSCODE_DOMAIN}
       - PASSWORD=${VSCODE_PASSWORD}
       - DOCKER_USER=${VSCODE_USER}
     volumes:
@@ -84,3 +93,35 @@ services:
       - ./vscode:/home/coder/project
     ports:
       - ${VSCODE_PORT}:${VSCODE_PORT}
+
+  nginx-proxy:
+    container_name: nginx-proxy
+    image: nginxproxy/nginx-proxy
+    restart: unless-stopped
+    ports:
+      - ${NGINX_HTTP_PORT}:${NGINX_HTTP_PORT}
+      - ${NGINX_HTTPS_PORT}:${NGINX_HTTPS_PORT}
+    volumes:
+      - ./nginx-proxy/htpasswd:/etc/nginx/htpasswd
+      - ./nginx-proxy/conf:/etc/nginx/conf.d
+      - ./nginx-proxy/certs:/etc/nginx/certs
+      - ./nginx-proxy/vhost:/etc/nginx/vhost.d
+      - ./nginx-proxy/html:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    labels:
+      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
+
+  nginx-proxy-acme:
+    container_name: nginx-proxy-acme
+    image: nginxproxy/acme-companion
+    restart: unless-stopped
+    environment:
+      - DEFAULT_EMAIL=${SSL_EMAIL}
+    volumes:
+      - ./nginx-proxy/certs:/etc/nginx/certs
+      - ./nginx-proxy/vhost:/etc/nginx/vhost.d
+      - ./nginx-proxy/html:/usr/share/nginx/html
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./nginx-proxy-acme/acme:/etc/acme.sh
+    depends_on:
+      - nginx-proxy
