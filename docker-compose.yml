@@ -74,7 +74,7 @@ services:
       - "traefik.http.routers.z2m.entrypoints=websecure"
       - "traefik.http.routers.z2m.tls.certresolver=myresolver"
       - "traefik.http.routers.z2m.middlewares=auth"
-      - "traefik.http.middlewares.auth.basicauth.users=isenne:$$2y$$05$$4bFdT3rjSsNctvpBG1pvIu3/I2H65y15KgHV3cCNaYw1c.dKjrvr2"
+      - "traefik.http.middlewares.auth.basicauth.users=${Z2M_USERNAME}:${Z2M_PASSWORD}"
 
   mariadb:
     image: mariadb:latest
