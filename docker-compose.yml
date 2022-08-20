@@ -48,7 +48,10 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ha.rule=Host(`ha.punter3.nl`)"
-      - "traefik.http.routers.ha.entrypoints=web"
+      - "traefik.http.routers.ha.entrypoints=websecure"
+      - "traefik.http.routers.ha.tls.certresolver=myresolver"
+      - "traefik.http.services.ha.loadbalancer.server.port=8123"
+
 
   zigbee2mqtt:
     image: koenkk/zigbee2mqtt:latest
