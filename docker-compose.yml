@@ -118,7 +118,7 @@ services:
     volumes:
       - ./hassio:/home/coder/project/hassio
       - ./mqtt:/home/coder/project/mqtt
-      - ./zigbee2mqtt/data:/home/coder/project/zigbee2mqtt
+      - ./zigbee2mqtt:/home/coder/project/zigbee2mqtt
       - ./vscode/.config:/home/coder/.config
       - ./vscode:/home/coder/project
     ports:
