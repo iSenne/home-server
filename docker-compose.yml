@@ -128,3 +128,14 @@ services:
       - "traefik.http.routers.code.rule=Host(`${VSCODE_DOMAIN}`)"
       - "traefik.http.routers.code.entrypoints=websecure"
       - "traefik.http.routers.code.tls.certresolver=myresolver"
+
+  nodered:
+    image: nodered/node-red:latest
+    container_name: nodered
+    restart: unless-stopped
+    ports:
+      - "1880:1880"
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ./nodered/data:/data
