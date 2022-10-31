@@ -133,6 +133,9 @@ services:
     image: nodered/node-red:latest
     container_name: nodered
     restart: unless-stopped
+    depends_on:
+      - homeassistant
+      - mqtt
     ports:
       - "1880:1880"
     environment:
