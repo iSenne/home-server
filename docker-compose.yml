@@ -137,7 +137,7 @@ services:
       - homeassistant
       - mqtt
     ports:
-      - "1880:1880"
+      - ${NODERED_PORT}:${NODERED_PORT}
     environment:
       - TZ=${TZ}
     volumes:
