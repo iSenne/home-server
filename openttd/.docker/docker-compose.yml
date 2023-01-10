@@ -13,10 +13,6 @@ services:
       - ./openttd/save:/home/openttd/.openttd/save
       - ./openttd/newgrf:/home/openttd/.openttd/newgrf
     environment:
-      - loadgame=true
+      - loadgame=last-autosave
       - savepath=/home/openttd/.openttd/save
-      - savename=test.sav
-#      loadgame: "true"
-#      savepath: "/home/openttd/.openttd/save"
-#      savename: "test.sav"
     tty: true
