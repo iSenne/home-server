@@ -11,7 +11,12 @@ services:
       - "3979:3979/udp"
     volumes:
       - ./openttd/save:/home/openttd/.openttd/save
+      - ./openttd/newgrf:/home/openttd/.openttd/newgrf
     environment:
-      loadgame: "last-autosave"
-      savepath: "/home/openttd/.openttd/save"
+      - loadgame=true
+      - savepath=/home/openttd/.openttd/save
+      - savename=test.sav
+#      loadgame: "true"
+#      savepath: "/home/openttd/.openttd/save"
+#      savename: "test.sav"
     tty: true

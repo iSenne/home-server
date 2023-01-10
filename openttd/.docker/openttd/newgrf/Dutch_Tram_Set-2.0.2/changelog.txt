@@ -1,0 +1,179 @@
+Changelog for Dutch Tramset
+===========================
+
+2.0.2 (2015/09/19)
+------------------
+Update: translations
+
+
+2.0.1 (2014/07/24)
+------------------
+Feature: many translations
+
+
+2.0.0 (2012/01/01)
+------------------
+Feature: parameter to have vehicles in 2CC
+Feature: parameter to allow refit to anything. Default passengers only.
+Feature: new BRU livery for connexxion 5001
+Feature: additional liveries of HTM 3001
+Feature: sort the purchase list
+Feature: Dutch version of readme
+Feature: ingame link to devzone
+
+Fix: TE coefficients were way too high
+Fix: cargo capacity display in purchase menu
+fix (r96,r98,r100): remove some more callback flag properties
+Fix (r96): also remove callback flags property
+Fix (r92): we should actually require 1.2.0.23068 to be able to use the date_of_last_service variable
+Fix (r50): balance costs against default vehicles
+
+Update: German translation (by planetmaker)
+Update: English translation (Bob_Mackenzie)
+Update: Dutch translation
+
+
+----------------------------------------------------------------
+Below are the changes from the Dutch Tram Set releases up to RC1
+These revisions are not available in the source repository, as 
+the set has only been GPL'ed and repositoried starting from the
+orginal sources of RC1 (r026).
+----------------------------------------------------------------
+
+r026 [2008/08/12] Release Candidate 1
+- Added more different bell sound effects.
+- Added 'newrvs' patch setting check.
+
+r025 [2008/08/11]
+- Fixed alignments of a couple of vehicles.
+- Removed ID 43 for full RV-ID recommendation compliance.
+- Bumped GRF-ID to FB FB 01 02.
+- Added TTDP version check.
+- Added 'shortrvs' patch setting check.
+- Fixed issue with HTM 'GTL-8' 3001-3147 BN livery stuff.
+- Changed license.
+
+r024 [2008/04/13]
+- Added refit options (PASS, TOUR, MAIL, GOOD, FOOD, VALU).
+
+r023 [2008/04/13]
+- Fixed GVBA 'Luchtwagens' 725-779 LHB for TTDP.
+- Fixed GVBA 'Trapwagens' 817-841 BN for TTDP.
+- Fixed GVBA 'Combino' 2001-2151 SIE for TTDP.
+- Fixed RET 'Citadis' 2001-2060 ALS for TTDP.
+- Fixed DTTM 'Flexity Outlook' BMB for TTDP.
+- Added 'trams' patch setting check.
+- Added 'articulatedrvs' patch setting check.
+
+r022 [2008/04/12]
+- Created replacement TTDP sprites.
+- Fixed RET 'Düwags' 351-386 DWG for TTDP.
+- Fixed HTM 'GTL-8' 3001-3147 BN for TTDP.
+- Moved Action 0 and Action 4 to end of code.
+
+r021 [2008/03/28]
+- Added 'luchtwagens'
+
+r020 [2008/03/27] Public Beta 2.1
+- Changed GRF-ID because of changed RV-IDs.
+
+r019 [2008/03/27] Public Beta 2
+-Added Bombardier Flexity Outlook.
+-Added Solar future tram.
+-Added LV4 compatibility.
+-Changed debug parameter, now set to 2.
+-Changed Base Cost reset behaviour.
+
+r018 [2007/12/24]
+-Changed vehicle IDs to comply to RV ID guidelines.
+
+r017 [2007/10/29]
+-Added debug option. Set parameter to 1 to introduce all vehicles in 1920.
+
+r016 [2007/10/26]
+-Added Base Cost Multiplier reset.
+
+r015 [2007/10/24] Public Beta 1
+-Updated vehicle names.
+-Added long format introduction date for pre-1920 vehicles.
+
+r014 [2007/10/24]
+-Reordered VehIDs.
+-Added HTM GTL8 2007 test livery.
+-Updated HTM GTL8 year-dependant livery-selection.
+-Added statistics for all vehicles
+-Added skips for TTDP incompatible vehicles.
+
+r013 [2007/09/19]
+-Checked positioning of trams on tracks and fixed where necessary.
+-Added drive side check to issue warning if set to left side.
+-Added toyland check to disable GRF in case of active toyland climate.
+
+r012 [2007/09/18]
+-Updated RET Allan 127 to v4.2/v4.0
+-Updated RET Allan 152/600 to v4.0/v3.1
+-Updated GETA Beijnes 76 to v4.1
+-Updated GVBA Werkspoor 495/951 to v1.1/v1.1
+-Updated HTM GTL8-II to v3.4
+-Updated HTM Werkspoor 201/751 to v1.1
+-Added NBM 50 v1.1
+-Added RET Duewag 351 v1.1
+-Added GVBA BN 817 v2.2
+
+r011 [2007/08/23]
+-Reworked Action0 sequence.
+-Added RET Alstom Citadis 2001-2060.
+-Added HTM Werkspoor 201-216 'Zwitsers'.
+-Corrected GVBA Combino alignment.
+-Noticed problems with VarAction2 Callback 11 vehicle length reduction 05 in TTDP.
+
+r010 [2007/08/22]
+-First major milestone rev.
+-Added VarAction2 types 01 and C4 for HTM GTL8 and Utrecht SIG.
+
+r009 [2007/08/21]
+-Added dedicated buy menu gfx (Action3 CargoType FF).
+-Added HTM BN GTL8-I 3001-3100 v2.
+-Added HTM/Randstadrail Alstom RegioCitadis 4001-4054.
+-Screwed up GVBA Combino alignment.
+
+r008 [2007/08/20]
+-Removed unnecessary VarAction2 shift-and-add-modulo adjustments.
+
+r007 [2007/08/19]
+-Added HTM BN GTL8-II 3101-3147 v3[1].
+
+r006 [2007/08/19]
+-Updated GVBA Siemens Combino to v2.
+
+r005 [2007/08/15]
+-Updated HTM Brugeoise 2101-2130 to v2.2.
+-Updated GETA Beijnes 76 to v4.0.
+-Updated Rendalyne to v1.1.
+
+r004 [2007/08/15]
+-Updated HTM Werkspoor 21-250 to v3.1.
+-Updated RET Allan 152-201 + RET Towed wagon series 600-629 to v4.0+v3.0.
+-Did not remove GVBA Siemens Combino ;).
+-Added RET Allan 127-151 v4.1.
+-Added HTM Brugeoise 821-830 + Towed wagon series 751-781 v5.0+v3.0.
+-Added GETA Beijnes 76 v3.0.
+-Added GVBA Werkspoor 495-550 + towed wagon Werkspoor 951-1000 v1.0+v1.0.
+-Added RET Schindler 231-244 v2.0.
+-Added HTM Brugeoise 1301-1340 + powered wagon 2101-2130 v2.1+v2.1.
+-Added Westnederland SIG 5001-5027.
+-Added Connexxion SIG 5001-5027.
+-Added Rendalyne v1.0.
+
+r003 [2007/07/23]
+-Updated GVBA Combino pantographs.
+-Corrected alignment in Vehicle Details window.
+
+r002 [2007/07/23]
+-Fixed bug with Action0 num-props.
+
+r001 [2007/07/23]
+-Initial build.
+-Added HTM Series 21-250.
+-Added RET Series 152-201 + RET Towed wagon series 600-629.
+-Added GVBA Combino.

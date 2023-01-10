@@ -1,0 +1,103 @@
+Dutch Road Furniture 0.7.1 Changelog
+-----------------------------------
+
+0.7.1 - 2015/10/04
+- Feature: UK roads median endpieces (Quast65)
+- Update: Translations
+es_ES: 2 changes by SilverSurferZzZ
+es_ES: 2 changes by SilverSurferZzZ
+es_ES: 2 changes by SilverSurferZzZ
+es_ES: 2 changes by SilverSurferZzZ
+es_ES: 2 changes by SilverSurferZzZ
+es_ES: 2 changes by SilverSurferZzZ
+es_ES: 2 changes by SilverSurferZzZ
+es_ES: 2 changes by SilverSurferZzZ
+es_ES: 2 changes by SilverSurferZzZ
+es_ES: 2 changes by SilverSurferZzZ
+fr_FR: 51 changes by arikover
+it_IT: 2 changes by Voyager1
+nl_NL: 2 changes by foobar
+
+
+0.7.0 - 2015/09/22
+- Feature: American Road Replacement Set support (zooks) (closes #6101)
+- Feature: direction sign (closes #3829)
+- Feature: hard shoulder with emergency telephone (closes #3513)
+- Feature: hard shoulder with variable message sign
+- Feature: have shoulder end pieces recognize many more other objects (closes #3574)
+- Feature: Indonesian translation (SkiddLow)
+- Feature: introduction dates in object description
+- Feature: left hand drive support for railroad crossing signs
+- Feature: median with streetlights (closes #3572)
+- Feature: parameter to disable introduction dates of objects
+- Feature: railroad crossing signs
+- Feature: warning signs
+- Change: colours in purchase description
+- Change: rename "introduced" to "designed" to match vehicle purchase menu
+- Change: require OpenTTD r23842 (closes #3573)
+- Change: review text strings
+- Update: Translations
+ca_ES: 74 changes by juanjo
+es_ES: 51 changes by SilverSurferZzZ
+fi_FI: 1 change by alluke
+fi_FI: 76 changes by Arexander
+fr_FR: 78 changes by arikover
+hr_HR: 122 changes by Voyager1
+it_IT: 66 changes by Snail
+it_IT: 71 changes by Voyager1
+ko_KR: 71 changes by Telk
+lb_LU: 75 changes by Phreeze
+nl_NL: 49 changes by foobar
+
+0.6.0 - 2012/01/19
+- Feature: additional activators for matrix signs
+- Feature: end piece for hard shoulders
+- Feature: median end pieces
+- Feature: maximum speed sign
+- Feature: motorway end sign
+- Feature: motorway sign
+- Feature: one way no entry sign
+- Feature: one way sign
+- Feature: yield sign
+- Feature: motorway start/end signs on shoulder start/end pieces
+- Feature: split objects into multiple categories
+- Fix: don't allow foundations next to shoulders
+- Fix: don't require median tiles to continue one additional tile in order to get a corner
+- Fix: disable object for other drive side
+
+0.5.1 - 2012/01/08
+- Feature: also allow standalone motorway signs on upward slopes
+- Feature: UK road support for standalone motorway signs
+
+0.5.0 - 2012/01/07
+- Feature: disable roadside trees and streetlights by default (parameter to enable)
+- Feature: gantry one shade darker and no middle support
+- Feature: guardrails for medians
+- Feature: ingame url and check to disallow in TTDPatch
+- Feature: left hand drive support
+- Feature: matrix signs (sign graphics by RL Conroy)
+- Feature: UK Roads support (graphics by Leanden)
+- Fix: rework gantry slope check
+- Fix: shoulder bends
+- Change: denote authors in graphics files
+
+0.4.0 - 2011/09/13
+- Feature: motorway direction signs
+- Feature: motorway direction gantries
+- Feature: allow overbuilding hard shoulders and medians
+- Fix: introduction date for hard shoulders and medians
+- Fix: improved fingerpost graphics to remove hover effect
+- Change: reworked strings
+
+0.3.0 - 2011/09/09
+- Feature: motorway medians with third lane
+
+0.2.1 - 2011/09/07
+- Fix: hard shoulder inside and outside corners couldn't connect directly
+- Fix: improve graphics of east/west inside hard shoulder corners
+
+0.2.0 - 2011/09/07
+- Feature: hard shoulders
+
+0.1.0 - 2011/08/19
+- Feature: historic, classic and modern fingerposts for 1, 2, 3 and 4 directions
