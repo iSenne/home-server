@@ -1,4 +1,4 @@
-FROM bateau/openttd:1.11.1
+FROM bateau/openttd:latest
 
 USER root
 
