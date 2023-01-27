@@ -9,6 +9,9 @@ help:
 .DEFAULT_GOAL := help
 
 .ONESHELL:
+up: ## Spin up the project
+	docker compose up -d --force-recreate
+
 update: ## Update and restart
 	docker compose pull
 	docker compose up -d --force-recreate
