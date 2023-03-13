@@ -163,10 +163,13 @@ services:
     ports:
       - "8084:80"
     environment:
-      YOURLS_DB_PASS: ${MYSQL_DATABASE}
+      YOURLS_DB_HOST: mysql
+      YOURLS_DB_USER: ${MYSQL_USERNAME}
+      YOURLS_DB_PASS: ${MYSQL_PASSWORD}
+      YOURLS_DB_NAME: ${MYSQL_DATABASE}
       YOURLS_SITE: https://u.punter3.nl
-      YOURLS_USER: ${MYSQL_USERNAME}
-      YOURLS_PASS: ${MYSQL_PASSWORD}
+      YOURLS_USER: iSenne
+      YOURLS_PASS: ${VSCODE_PASSWORD}
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.code.rule=Host(`u.punter3.nl`)"
