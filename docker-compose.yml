@@ -155,3 +155,19 @@ services:
       - ./pihole/etc-pihole:/etc/pihole
       - ./pihole/etc-dnsmasq.d:/etc/dnsmasq.d
     restart: unless-stopped
+
+  yourls:
+    image: yourls
+    restart: unless-stopped
+    ports:
+      - 8083:80
+    environment:
+      YOURLS_DB_PASS: ${MYSQL_DATABASE}
+      YOURLS_SITE: https://u.punter3.nl
+      YOURLS_USER: ${MYSQL_USERNAME}
+      YOURLS_PASS: ${MYSQL_PASSWORD}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.code.rule=Host(`u.punter3.nl`)"
+      - "traefik.http.routers.code.entrypoints=websecure"
+      - "traefik.http.routers.code.tls.certresolver=myresolver"
