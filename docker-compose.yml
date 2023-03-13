@@ -157,10 +157,11 @@ services:
     restart: unless-stopped
 
   yourls:
+    container_name: yourls
     image: yourls
     restart: unless-stopped
     ports:
-      - 8084:80
+      - "8084:80"
     environment:
       YOURLS_DB_PASS: ${MYSQL_DATABASE}
       YOURLS_SITE: https://u.punter3.nl
