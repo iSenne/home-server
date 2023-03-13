@@ -160,7 +160,7 @@ services:
     image: yourls
     restart: unless-stopped
     ports:
-      - 8083:80
+      - 8084:80
     environment:
       YOURLS_DB_PASS: ${MYSQL_DATABASE}
       YOURLS_SITE: https://u.punter3.nl
