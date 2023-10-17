@@ -140,6 +140,14 @@ services:
       - TZ=${TZ}
     volumes:
       - ./nodered/data:/data
+      - ./nodered/settings.js:/data/settings.js
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.nr.rule=Host(`nr.punter3.nl`)"
+    #   - "traefik.http.routers.nr.entrypoints=websecure"
+    #   - "traefik.http.routers.nr.tls.certresolver=myresolver"
+    #   - "traefik.http.routers.nr.middlewares=auth"
+    #   - "traefik.http.middlewares.auth.basicauth.users=isenne:$$2y$$05$$4bFdT3rjSsNctvpBG1pvIu3/I2H65y15KgHV3cCNaYw1c.dKjrvr2"
 
   pihole:
     container_name: pihole
