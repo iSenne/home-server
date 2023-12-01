@@ -10,7 +10,7 @@ data:
     }
 
     # Hoofddomein
-    3904zz.nl:8080 {
+    3904zz.nl {
         reverse_proxy wordpress-service:80
     }
 
