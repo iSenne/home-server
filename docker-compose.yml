@@ -28,6 +28,30 @@ services:
     extra_hosts:
       - host.docker.internal:172.17.0.1
 
+  external-site:
+    image: alpine
+    command: tail -f /dev/null
+    depends_on:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.external-site-http.rule=Host(`${EXTERNAL_DOMAIN}`)"
+      - "traefik.http.routers.external-site-http.entrypoints=web"
+      - "traefik.http.routers.external-site-http.middlewares=redirect-to-https"
+
+      - "traefik.http.routers.external-site-https.rule=Host(`${EXTERNAL_DOMAIN}`)"
+      - "traefik.http.routers.external-site-https.entrypoints=websecure"
+      - "traefik.http.routers.external-site-https.tls=true"
+      - "traefik.http.routers.external-site-https.tls.certresolver=myresolver"
+      - "traefik.http.routers.external-site-https.service=external-site"
+
+      - "traefik.http.services.external-site.loadbalancer.server.scheme=http"
+      - "traefik.http.services.external-site.loadbalancer.server.port=80"
+      - "traefik.http.services.external-site.loadbalancer.server.url=${EXTERNAL_IP}"
+
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+
+
   homeassistant:
     image: ghcr.io/home-assistant/home-assistant:stable
     container_name: homeassistant
