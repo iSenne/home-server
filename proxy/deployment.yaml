@@ -29,5 +29,5 @@ spec:
               cpu: "500m"
       volumes:
         - name: caddy-config-volume
-          persistentVolumeClaim:
-            claimName: caddy-pvc
+          configMap:
+            name: caddy-config
