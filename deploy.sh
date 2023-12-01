@@ -3,6 +3,9 @@
 # Stop het script bij een fout
 set -e
 
+echo "Applying PV for WordPress..."
+kubectl apply -f wordpress/pv.yaml
+
 echo "Applying PVC for WordPress..."
 kubectl apply -f wordpress/pvc.yaml
 
