@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: caddy-config
+data:
+  Caddyfile: |
+    # Redirect www naar niet-www over HTTPS
+    www.3904zz.nl {
+        redir https://3904zz.nl{uri}
+    }
+
+    # Hoofddomein
+    3904zz.nl:8080 {
+        reverse_proxy wordpress-service:80
+    }
+
+    # Forceer HTTPS door automatische HTTP naar HTTPS redirects
+    http:// {
+        redir https://{host}{uri}
+    }
