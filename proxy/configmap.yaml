@@ -6,6 +6,7 @@ data:
   Caddyfile: |
     # Hoofddomein en subdomeinen van punter3.nl doorsturen
     punter3.nl, *.punter3.nl {
+        tls off
         reverse_proxy 192.168.100.32
     }
 
