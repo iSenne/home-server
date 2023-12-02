@@ -18,13 +18,13 @@ data:
         reverse_proxy 192.168.100.32:8123
     }
 
-    z2m.punter3.nl {
-        reverse_proxy 192.168.100.32:8099
-    }
+    # z2m.punter3.nl {
+    #     reverse_proxy 192.168.100.32:8099
+    # }
 
-    code.punter3.nl {
-        reverse_proxy 192.168.100.32:8081
-    }
+    # code.punter3.nl {
+    #     reverse_proxy 192.168.100.32:8081
+    # }
 
     nr.punter3.nl {
         reverse_proxy 192.168.100.32:1880
