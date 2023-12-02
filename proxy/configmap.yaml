@@ -4,17 +4,17 @@ metadata:
   name: caddy-config
 data:
   Caddyfile: |
-    # Omleiden van HTTP-verkeer voor punter3.nl en subdomeinen
-    punter3.nl:30080, *.punter3.nl:30080 {
-        tls internal
-        reverse_proxy 192.168.100.32:80
-    }
+    # # Omleiden van HTTP-verkeer voor punter3.nl en subdomeinen
+    # punter3.nl:30080, *.punter3.nl:30080 {
+    #     tls internal
+    #     reverse_proxy 192.168.100.32:80
+    # }
 
-    # Omleiden van HTTPS-verkeer voor punter3.nl en subdomeinen
-    punter3.nl:30443, *.punter3.nl:30443 {
-        tls internal
-        reverse_proxy 192.168.100.32:443
-    }
+    # # Omleiden van HTTPS-verkeer voor punter3.nl en subdomeinen
+    # punter3.nl:30443, *.punter3.nl:30443 {
+    #     tls internal
+    #     reverse_proxy 192.168.100.32:443
+    # }
 
     # Redirect www naar niet-www over HTTPS
     www.3904zz.nl {
