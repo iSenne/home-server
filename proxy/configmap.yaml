@@ -4,16 +4,17 @@ metadata:
   name: caddy-config
 data:
   Caddyfile: |
-    192.168.100.68:30080 {
-        reverse_proxy wordpress-service:80
-    }
-
     # Redirect www naar niet-www over HTTPS
-    www.3904zz.nl:30080 {
-        redir http://3904zz.nl:30080{uri}
+    www.3904zz.nl {
+        redir https://3904zz.nl{uri}
     }
 
     # Hoofddomein
-    3904zz.nl:30080 {
+    3904zz.nl {
         reverse_proxy wordpress-service:80
+    }
+
+    # Forceer HTTPS door automatische HTTP naar HTTPS redirects
+    http:// {
+        redir https://{host}{uri}
     }
