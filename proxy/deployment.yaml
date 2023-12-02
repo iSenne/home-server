@@ -21,6 +21,8 @@ spec:
           volumeMounts:
             - mountPath: /etc/caddy
               name: caddy-config-volume
+            - mountPath: /data
+              name: caddy-storage
           resources:
             requests:
               memory: "64Mi"
@@ -32,3 +34,6 @@ spec:
         - name: caddy-config-volume
           configMap:
             name: caddy-config
+        - name: caddy-storage
+          persistentVolumeClaim:
+            claimName: caddy-pvc
