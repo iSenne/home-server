@@ -15,7 +15,7 @@ data:
     }
 
     # Omleiden van zowel HTTP- als HTTPS-verkeer voor punter3.nl en subdomeinen
-    punter3.nl, ha.punter3.nl, nr.punter3.nl, code.punter3.nl {
+    punter3.nl, ha.punter3.nl, nr.punter3.nl, code.punter3.nl  {
         @http {
             protocol http
         }
@@ -33,4 +33,8 @@ data:
         handle @https {
             reverse_proxy 192.168.100.32:443
         }
+    }
+
+    test.punter3.nl {
+        reverse_proxy 192.168.100.32:8888
     }
