@@ -5,13 +5,13 @@ metadata:
 data:
   Caddyfile: |
     # Omleiden van HTTP-verkeer voor punter3.nl en subdomeinen
-    punter3.nl:80, *.punter3.nl:80 {
+    punter3.nl:30080, *.punter3.nl:30080 {
         tls internal
         reverse_proxy 192.168.100.32:80
     }
 
     # Omleiden van HTTPS-verkeer voor punter3.nl en subdomeinen
-    punter3.nl:443, *.punter3.nl:443 {
+    punter3.nl:30443, *.punter3.nl:30443 {
         tls internal
         reverse_proxy 192.168.100.32:443
     }
