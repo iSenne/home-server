@@ -3,11 +3,13 @@
 # Stop het script bij een fout
 set -e
 
-echo "Applying PV for WordPress..."
+echo "Applying PV for WordPress and caddy..."
 kubectl apply -f wordpress/pv.yaml
+kubectl apply -f caddy/pv.yaml
 
-echo "Applying PVC for WordPress..."
+echo "Applying PVC for WordPress and caddy..."
 kubectl apply -f wordpress/pvc.yaml
+kubectl apply -f caddy/pvc.yaml
 
 echo "Deploying WordPress..."
 kubectl apply -f wordpress/deployment.yaml
@@ -18,8 +20,6 @@ kubectl apply -f proxy/configmap.yaml
 
 echo "Deploying Caddy..."
 kubectl apply -f proxy/deployment.yaml
-
-echo "Applying nodeport..."
 kubectl apply -f proxy/service.yaml
 
 echo "Deployment completed successfully!"
