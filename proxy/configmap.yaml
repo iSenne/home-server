@@ -14,14 +14,24 @@ data:
         reverse_proxy wordpress-service:80
     }
 
-    # Omleiden van HTTP-verkeer voor punter3.nl en subdomeinen
-    punter3.nl:30080, *.punter3.nl:30080 {
-        tls internal
-        reverse_proxy 192.168.100.32:80
-    }
+    # Omleiden van zowel HTTP- als HTTPS-verkeer voor punter3.nl en subdomeinen
+    punter3.nl, *.punter3.nl {
+        @http {
+            protocol http
+        }
+        
+        @https {
+            protocol https
+        }
 
-    # Omleiden van HTTPS-verkeer voor punter3.nl en subdomeinen
-    punter3.nl:30443, *.punter3.nl:30443 {
-        tls internal
-        reverse_proxy 192.168.100.32:443
+        # Voor HTTP-verkeer
+        handle @http {
+            reverse_proxy 192.168.100.32:80
+        }
+
+        # Voor HTTPS-verkeer
+        handle @https {
+            tls internal
+            reverse_proxy 192.168.100.32:443
+        }
     }
