@@ -5,11 +5,11 @@ set -e
 
 echo "Applying PV for WordPress and caddy..."
 kubectl apply -f wordpress/pv.yaml
-kubectl apply -f caddy/pv.yaml
+kubectl apply -f proxy/pv.yaml
 
 echo "Applying PVC for WordPress and caddy..."
 kubectl apply -f wordpress/pvc.yaml
-kubectl apply -f caddy/pvc.yaml
+kubectl apply -f proxy/pvc.yaml
 
 echo "Deploying WordPress..."
 kubectl apply -f wordpress/deployment.yaml
