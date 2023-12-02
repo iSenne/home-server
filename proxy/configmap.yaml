@@ -6,7 +6,6 @@ data:
   Caddyfile: |
     # Omleiden van HTTP-verkeer voor punter3.nl en subdomeinen
     punter3.nl:80, *.punter3.nl:80 {
-        tls off
         reverse_proxy 192.168.100.32:80
     }
 
