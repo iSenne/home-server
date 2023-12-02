@@ -16,8 +16,6 @@ data:
 
     # Omleiden van zowel HTTP- als HTTPS-verkeer voor punter3.nl en subdomeinen
     punter3.nl, *.punter3.nl {
-        tls internal
-        
         @http {
             protocol http
         }
