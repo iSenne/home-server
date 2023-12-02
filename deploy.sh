@@ -20,6 +20,6 @@ echo "Deploying Caddy..."
 kubectl apply -f proxy/deployment.yaml
 
 echo "Applying nodeport..."
-kubectl apply -f caddy-service.yaml
+kubectl apply -f proxy/service.yaml
 
 echo "Deployment completed successfully!"
