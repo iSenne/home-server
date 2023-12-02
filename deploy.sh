@@ -19,7 +19,7 @@ kubectl apply -f proxy/configmap.yaml
 echo "Deploying Caddy..."
 kubectl apply -f proxy/deployment.yaml
 
-echo "Applying Ingress..."
-kubectl apply -f proxy/ingress.yaml
+echo "Applying nodeport..."
+kubectl apply -f caddy-service.yaml
 
 echo "Deployment completed successfully!"
