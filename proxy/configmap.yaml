@@ -5,16 +5,16 @@ metadata:
 data:
   Caddyfile: |
     # Redirect www naar niet-www over HTTPS
-    www.3904zz.nl {
-        redir https://3904zz.nl{uri}
+    www.3904zz.nl:30080 {
+        redir https://3904zz.nl:30080{uri}
     }
 
     # Hoofddomein
-    3904zz.nl {
+    3904zz.nl:30080 {
         reverse_proxy wordpress-service:80
     }
 
     # Forceer HTTPS door automatische HTTP naar HTTPS redirects
-    http:// {
-        redir https://{host}{uri}
-    }
+    # http:// {
+    #     redir https://{host}{uri}
+    # }
