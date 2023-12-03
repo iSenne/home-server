@@ -4,6 +4,11 @@ metadata:
   name: caddy-config
 data:
   Caddyfile: |
+    # Behandel verkeer voor het IP-adres
+    192.168.100.68:30080 {
+        reverse_proxy wordpress-service:80
+    }
+
     # Redirect www naar niet-www over HTTPS
     www.3904zz.nl {
         redir https://3904zz.nl{uri}
@@ -17,14 +22,6 @@ data:
     ha.punter3.nl {
         reverse_proxy 192.168.100.32:8123
     }
-
-    # z2m.punter3.nl {
-    #     reverse_proxy 192.168.100.32:8099
-    # }
-
-    # code.punter3.nl {
-    #     reverse_proxy 192.168.100.32:8081
-    # }
 
     nr.punter3.nl {
         reverse_proxy 192.168.100.32:1880
