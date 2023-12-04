@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Stop het script bij een fout
+set -e
+
 # Laad omgevingsvariabelen
 export $(egrep -v '^#' .env | xargs)
 
@@ -12,9 +15,6 @@ if [ -z "${MYSQL_PASSWORD}" ]; then
     echo "MYSQL_PASSWORD is niet ingesteld."
     exit 1
 fi
-
-# Stop het script bij een fout
-set -e
 
 echo "Applying PV's'..."
 kubectl apply -f database/pv.yaml
@@ -33,8 +33,8 @@ kubectl apply -f proxy/configmap.yaml
 echo "Creating secrets from .env..."
 kubectl create secret generic mariadb-secret \
   --save-config \
-  --from-literal=mysql_root_password=$(echo -n "$MYSQL_ROOT_PASSWORD" | base64) \
-  --from-literal=mysql_password=$(echo -n "$MYSQL_PASSWORD" | base64) \
+  --from-literal=mysql_root_password=$MYSQL_ROOT_PASSWORD \
+  --from-literal=mysql_password=$MYSQL_PASSWORD \
   --dry-run=client \
   -o yaml | \
   kubectl apply -f -
