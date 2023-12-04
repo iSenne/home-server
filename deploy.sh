@@ -39,6 +39,10 @@ kubectl create secret generic mariadb-secret \
   -o yaml | \
   kubectl apply -f -
 
+echo "Deploying Caddy..."
+kubectl apply -f proxy/deployment.yaml
+kubectl apply -f proxy/service.yaml
+
 echo "Deploying Database..."
 kubectl apply -f database/deployment.yaml
 kubectl apply -f database/service.yaml
@@ -46,9 +50,5 @@ kubectl apply -f database/service.yaml
 echo "Deploying WordPress..."
 kubectl apply -f wordpress/deployment.yaml
 kubectl apply -f wordpress/service.yaml
-
-echo "Deploying Caddy..."
-kubectl apply -f proxy/deployment.yaml
-kubectl apply -f proxy/service.yaml
 
 echo "Deployment completed successfully!"
