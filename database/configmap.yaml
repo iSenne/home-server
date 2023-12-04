@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: caddy-config
+data:
+  Caddyfile: |
+    # Redirect www naar niet-www over HTTPS
+    www.isenne.dev {
+        redir https://isenne.dev{uri}
+    }
+
+    # Hoofddomein
+    isenne.dev {
+        reverse_proxy wordpress-service:80
+    }
+
+    ha.punter3.nl {
+        reverse_proxy 192.168.100.32:8123
+    }
+
+    nr.punter3.nl {
+        reverse_proxy 192.168.100.32:1880
+    }
+
+    pihole.punter3.nl {
+        reverse_proxy 192.168.100.32:8082
+    }
