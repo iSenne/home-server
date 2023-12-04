@@ -31,9 +31,13 @@ kubectl apply -f database/configmap.yaml
 kubectl apply -f proxy/configmap.yaml
 
 echo "Creating secrets from .env..."
-kubectl apply secret generic mariadb-secret \
-  --from-literal=mysql_root_password="$MYSQL_ROOT_PASSWORD" \
-  --from-literal=mysql_password="$MYSQL_PASSWORD"
+kubectl create secret generic mariadb-secret \
+  --save-config \
+  --from-literal=mysql_root_password=$(echo -n "$MYSQL_ROOT_PASSWORD" | base64) \
+  --from-literal=mysql_password=$(echo -n "$MYSQL_PASSWORD" | base64) \
+  --dry-run=client \
+  -o yaml | \
+  kubectl apply -f -
 
 echo "Deploying Database..."
 kubectl apply -f database/deployment.yaml
