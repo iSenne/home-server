@@ -4,18 +4,13 @@ metadata:
   name: caddy-config
 data:
   Caddyfile: |
-    # Behandel verkeer voor het IP-adres
-    192.168.100.68:30080 {
-        reverse_proxy wordpress-service:80
-    }
-
     # Redirect www naar niet-www over HTTPS
-    www.3904zz.nl {
-        redir https://3904zz.nl{uri}
+    www.isenne.dev {
+        redir https://isenne.dev{uri}
     }
 
     # Hoofddomein
-    3904zz.nl {
+    isenne.dev {
         reverse_proxy wordpress-service:80
     }
 
@@ -25,4 +20,8 @@ data:
 
     nr.punter3.nl {
         reverse_proxy 192.168.100.32:1880
+    }
+
+    pihole.punter3.nl {
+        reverse_proxy 192.168.100.32:8082
     }
