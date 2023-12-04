@@ -41,6 +41,7 @@ kubectl create secret generic mariadb-secret \
 
 echo "Deploying Proxy..."
 kubectl apply -f proxy/deployment.yaml
+kubectl apply -f proxy/service.yaml
 
 echo "Deploying Database..."
 kubectl apply -f database/deployment.yaml
