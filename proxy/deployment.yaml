@@ -12,6 +12,7 @@ spec:
       labels:
         app: caddy
     spec:
+      hostNetwork: true
       containers:
         - name: caddy
           image: caddy:latest
