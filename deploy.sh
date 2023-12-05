@@ -32,15 +32,15 @@ kubectl apply -f proxy/configmap.yaml
 
 echo "Creating secrets from .env..."
 kubectl create secret generic mariadb-secret \
+  --save-config \
   --from-literal=mysql_root_password=$MYSQL_ROOT_PASSWORD \
   --from-literal=mysql_password=$MYSQL_PASSWORD \
-  --save-config \
   --dry-run=client \
   -o yaml | \
   kubectl apply -f -
 kubectl create secret generic wordpress-secret \
-  --literal-string=WORDPRESS_DB_PASSWORD=$WORDPRESS_DB_PASSWORD \
   --save-config \
+  --literal-string=WORDPRESS_DB_PASSWORD=$WORDPRESS_DB_PASSWORD \
   --dry-run=client \
   -o yaml | \
   kubectl apply -f -
