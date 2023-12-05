@@ -36,7 +36,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: wordpress-config
-                  key: WORDRESS_DB_NAME
+                  key: WORDPRESS_DB_NAME
           volumeMounts:
             - name: wordpress-storage
               mountPath: /var/www/html
