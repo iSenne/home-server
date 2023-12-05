@@ -50,9 +50,6 @@ echo "Deploying WordPress..."
 kubectl apply -f wordpress/deployment.yaml
 kubectl apply -f wordpress/service.yaml
 
-echo "Deploying longhorn..."
-kubectl apply -f longhorn/service.yaml
-
 echo "Restart Proxy..."
 kubectl rollout restart deployment caddy
 
