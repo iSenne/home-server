@@ -40,7 +40,7 @@ kubectl create secret generic mariadb-secret \
   kubectl apply -f -
 kubectl create secret generic wordpress-secret \
   --save-config \
-  --literal-string=WORDPRESS_DB_PASSWORD=$WORDPRESS_DB_PASSWORD \
+  --from-literal=WORDPRESS_DB_PASSWORD=$WORDPRESS_DB_PASSWORD \
   --dry-run=client \
   -o yaml | \
   kubectl apply -f -
