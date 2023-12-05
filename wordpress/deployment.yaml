@@ -16,11 +16,27 @@ spec:
           image: wordpress:latest
           ports:
             - containerPort: 80
-          envFrom:
-            - secretRef:
-              name: wordpress-secret
-            - configRef:
-              name: wordpress-config
+          env:
+            - name: WORDPRESS_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: wordpress-secret
+                  key: WORDPRESS_DB_PASSWORD
+            - name: WORDPRESS_DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: wordpress-config
+                  key: WORDPRESS_DB_HOST
+            - name: WORDPRESS_DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: wordpress-config
+                  key: WORDPRESS_DB_USER
+            - name: WORDPRESS_DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: wordpress-config
+                  key: WORDRESS_DB_NAME
           volumeMounts:
             - name: wordpress-storage
               mountPath: /var/www/html
