@@ -28,18 +28,10 @@ data:
 
         longhorn.punter3.nl {
             @ipwhitelist {
-                remote_ip 192.168.100.0/24 85.146.7.102
-            }
-
-            @vdvalkveenendaal {
-                remote_ip 92.66.50.27
+                remote_ip 192.168.100.0/24 85.146.7.102 92.66.50.27
             }
 
             handle @ipwhitelist {
-                reverse_proxy longhorn-frontend.longhorn-system.svc.cluster.local:80
-            }
-
-            handle vdvalkveenendaal {
                 reverse_proxy longhorn-frontend.longhorn-system.svc.cluster.local:80
             }
 
