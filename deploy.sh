@@ -51,4 +51,7 @@ echo "Deploying WordPress..."
 kubectl apply -f wordpress/deployment.yaml
 kubectl apply -f wordpress/service.yaml
 
+echo "Restart Proxy..."
+kubectl rollout restart deployment caddy
+
 echo "Deployment completed successfully!"
