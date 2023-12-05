@@ -28,7 +28,7 @@ data:
 
         longhorn.punter3.nl {
             @ipwhitelist {
-                remote_ip forwarded 192.168.100.0/24 85.146.7.102
+                remote_ip private_ranges
             }
 
             handle @ipwhitelist {
