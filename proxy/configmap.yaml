@@ -27,5 +27,15 @@ data:
         }
 
         longhorn.punter3.nl {
-            reverse_proxy longhorn-frontend.longhorn-system.svc.cluster.local:80
+            @ipwhitelist {
+                remote_ip 192.168.100.0/24 85.146.7.102
+            }
+
+            handle @ipwhitelist {
+                reverse_proxy longhorn-frontend.longhorn-system.svc.cluster.local:80
+            }
+
+            handle {
+                respond "Hello, world!"
+            }
         }
