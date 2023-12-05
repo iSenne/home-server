@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: longhorn-frontend-service
 spec:
+  namespace: longhorn-system
   type: NodePort
   selector:
     app: longhorn-ui
