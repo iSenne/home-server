@@ -10,4 +10,4 @@ spec:
     - name: http
       protocol: TCP
       port: 80
-      nodePort: 8080
+      nodePort: 30001
