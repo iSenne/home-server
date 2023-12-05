@@ -4,6 +4,10 @@ metadata:
     name: caddy-config
 data:
     Caddyfile: |
+        {
+            email isenne@outlook.com
+        }
+
         # Redirect www naar niet-www over HTTPS
         www.isenne.dev {
             redir https://isenne.dev{uri}
@@ -20,4 +24,8 @@ data:
 
         nr.punter3.nl {
             reverse_proxy 192.168.100.32:1880
+        }
+
+        longhorn.punter3.nl {
+            reverse_proxy longhorn-frontend:80
         }
