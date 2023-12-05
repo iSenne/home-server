@@ -8,5 +8,6 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  hostPath:
-    path: /mnt/host/proxy
+  nfs:
+    server: 192.168.100.201
+    path: /mnt/data/proxy
