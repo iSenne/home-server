@@ -18,7 +18,6 @@ fi
 
 echo "Applying PV's'..."
 kubectl apply -f database/pv.yaml
-kubectl apply -f wordpress/pv.yaml
 kubectl apply -f proxy/pv.yaml
 
 echo "Applying PVC's'..."
