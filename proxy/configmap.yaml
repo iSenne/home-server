@@ -35,7 +35,5 @@ data:
                 reverse_proxy longhorn-frontend.longhorn-system.svc.cluster.local:80
             }
 
-            handle {
-                respond "Hello, world!"
-            }
+            respond "Hello, world!"
         }
