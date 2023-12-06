@@ -1,0 +1,15 @@
+apiVersion: metallb.universe.tf/v1beta1
+kind: IPAddressPool
+metadata:
+  name: punter3-pool
+spec:
+  addresses:
+    - 192.168.100.220-192.168.100.230
+---
+apiVersion: metallb.universe.tf/v1beta1
+kind: L2Advertisement
+metadata:
+  name: punter3-advertisement
+spec:
+  ipAddressPools:
+    - punter3-pool
