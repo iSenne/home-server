@@ -3,9 +3,10 @@ kind: Ingress
 metadata:
   name: wordpress-ingress
   annotations:
-    kubernetes.io/ingress.class: caddy
+    # kubernetes.io/ingress.class: caddy
     # caddy.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
+  ingressClassName: "caddy"
   rules:
     - host: 3904zz.nl
       http:
