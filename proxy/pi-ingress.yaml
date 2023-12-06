@@ -12,6 +12,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: external-service
+                name: pi-32
                 port:
                   number: 8123
