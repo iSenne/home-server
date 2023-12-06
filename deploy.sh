@@ -6,29 +6,16 @@ set -e
 # Laad omgevingsvariabelen
 export $(egrep -v '^#' .env | xargs)
 
-if [ -z "${MYSQL_ROOT_PASSWORD}" ]; then
-    echo "MYSQL_ROOT_PASSWORD is niet ingesteld."
-    exit 1
-fi
-
-if [ -z "${MYSQL_PASSWORD}" ]; then
-    echo "MYSQL_PASSWORD is niet ingesteld."
-    exit 1
-fi
-
 echo "Applying PV's'..."
 kubectl apply -f database/pv.yaml
-kubectl apply -f proxy/pv.yaml
 
 echo "Applying PVC's'..."
 kubectl apply -f database/pvc.yaml
 kubectl apply -f wordpress/pvc.yaml
-kubectl apply -f proxy/pvc.yaml
 
 echo "Creating ConfigMap's'..."
 kubectl apply -f database/configmap.yaml
 kubectl apply -f wordpress/configmap.yaml
-kubectl apply -f proxy/configmap.yaml
 
 echo "Creating secrets from .env..."
 kubectl create secret generic mariadb-secret \
@@ -45,9 +32,9 @@ kubectl create secret generic wordpress-secret \
   -o yaml | \
   kubectl apply -f -
 
-echo "Deploying Proxy..."
-kubectl apply -f proxy/deployment.yaml
-kubectl apply -f proxy/service.yaml
+echo "Deploying pi 32..."
+kubectl apply -f proxy/pi-32.yaml
+kubectl apply -f proxy/pi-ingress.yaml
 
 echo "Deploying Database..."
 kubectl apply -f database/deployment.yaml
@@ -56,8 +43,6 @@ kubectl apply -f database/service.yaml
 echo "Deploying WordPress..."
 kubectl apply -f wordpress/deployment.yaml
 kubectl apply -f wordpress/service.yaml
-
-echo "Restart Proxy..."
-kubectl rollout restart deployment caddy
+kubectl apply -f wordpress/ingress.yaml
 
 echo "Deployment completed successfully!"
