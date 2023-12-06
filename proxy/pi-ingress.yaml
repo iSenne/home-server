@@ -5,6 +5,16 @@ metadata:
 spec:
   ingressClassName: "caddy"
   rules:
+    - host: nr.punter3.nl
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pi-32
+                port:
+                  number: 1880
     - host: ha.punter3.nl
       http:
         paths:
