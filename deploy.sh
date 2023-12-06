@@ -33,8 +33,10 @@ kubectl create secret generic wordpress-secret \
   kubectl apply -f -
 
 echo "Deploying pi 32..."
-kubectl apply -f proxy/pi-32.yaml
-kubectl apply -f proxy/pi-ingress.yaml
+kubectl apply -f proxy/ha-service.yaml
+kubectl apply -f proxy/ha-ingress.yaml
+kubectl apply -f proxy/nr-service.yaml
+kubectl apply -f proxy/nr-ingress.yaml
 
 echo "Deploying Database..."
 kubectl apply -f database/deployment.yaml

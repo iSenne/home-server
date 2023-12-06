@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: pi-32
+  name: nr-service
 spec:
   type: ExternalName
   externalName: 192.168.100.32
   ports:
-    - port: 8123
+    - port: 1880
