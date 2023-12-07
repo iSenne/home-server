@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vscode
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vscode
+  template:
+    metadata:
+      labels:
+        app: vscode
+    spec:
+      containers:
+        - name: vscode
+          image: codercom/code-server:latest
+          securityContext:
+            runAsUser: 0 # root user
+            runAsGroup: 0 # root group
+          env:
+            - name: PASSWORD
+              value: "SeCrEtP@s5"
+            - name: DOCKER_USER
+              value: "root"
+          ports:
+            - containerPort: 8081
+          volumeMounts:
+            - name: wordpress-storage
+              mountPath: /home/coder/project/wordpress
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "1000m"
+      volumes:
+        - name: wordpress-storage
+          persistentVolumeClaim:
+            claimName: wordpress-lh-pvc

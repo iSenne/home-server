@@ -33,7 +33,6 @@ kubectl create secret generic wordpress-secret \
   kubectl apply -f -
 
 echo "Deploying proxy..."
-kubectl apply -f proxy/configmap.yaml
 kubectl apply -f proxy/ha-service.yaml
 kubectl apply -f proxy/ha-ingress.yaml
 kubectl apply -f proxy/nr-service.yaml
@@ -47,5 +46,10 @@ echo "Deploying WordPress..."
 kubectl apply -f wordpress/deployment.yaml
 kubectl apply -f wordpress/service.yaml
 kubectl apply -f wordpress/ingress.yaml
+
+echo "Deploying Code..."
+kubectl apply -f code/deployment.yaml
+kubectl apply -f code/service.yaml
+kubectl apply -f code/ingress.yaml
 
 echo "Deployment completed successfully!"

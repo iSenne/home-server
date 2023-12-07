@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vscode-ingress
+spec:
+  ingressClassName: "caddy"
+  rules:
+    - host: code.isenne.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vscode-service
+                port:
+                  number: 8081
