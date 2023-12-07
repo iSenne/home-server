@@ -6,4 +6,4 @@ metadata:
 data:
   email: isenne@outlook.com
   debug: "true"
-  proxyProtocol: "false"
+  proxyProtocol: "true"
