@@ -4,6 +4,7 @@ metadata:
   name: ha-service
 spec:
   type: ClusterIP
+  externalTrafficPolicy: Local
   clusterIP: None
   ports:
     - name: home-assistant
