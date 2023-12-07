@@ -11,8 +11,6 @@ spec:
           - path: /
             pathType: Prefix
             backend:
-              # serviceName: ha-service
-              # servicePort: 8123
               service:
                 name: ha-service
                 port:
