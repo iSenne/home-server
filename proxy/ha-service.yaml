@@ -14,7 +14,7 @@ spec:
 apiVersion: v1
 kind: Endpoints
 metadata:
-  name: ha-endpoint
+  name: ha-service
 subsets:
   - addresses:
       - ip: 192.168.100.32
