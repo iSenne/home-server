@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: home-assistant-lh-pvc
+  name: home-assistant-pvc
 spec:
   accessModes:
     - ReadWriteMany

@@ -4,3 +4,5 @@ kubectl delete pvc --all
 kubectl delete pv --all
 kubectl delete configmap --all
 kubectl delete secret --all
+kubectl delete ingress --all
+kubectl delete endpoints --all

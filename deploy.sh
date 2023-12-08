@@ -41,6 +41,7 @@ kubectl apply -f database/deployment.yaml
 kubectl apply -f database/service.yaml
 
 echo "Deploying WordPress..."
+kubectl apply -f wordpress/pv.yaml
 kubectl apply -f wordpress/pvc.yaml
 kubectl apply -f wordpress/configmap.yaml
 kubectl apply -f wordpress/deployment.yaml
@@ -48,6 +49,7 @@ kubectl apply -f wordpress/service.yaml
 kubectl apply -f wordpress/ingress.yaml
 
 echo "Deploying Home Assistant..."
+kubectl apply -f home-assistant/pv.yaml
 kubectl apply -f home-assistant/pvc.yaml
 kubectl apply -f home-assistant/configmap.yaml
 kubectl apply -f home-assistant/deployment.yaml
@@ -55,9 +57,9 @@ kubectl apply -f home-assistant/service.yaml
 kubectl apply -f home-assistant/ingress.yaml
 
 echo "Deploying Code..."
-kubectl apply -f code/pvc.yaml
-kubectl apply -f code/deployment.yaml
-kubectl apply -f code/service.yaml
-kubectl apply -f code/ingress.yaml
+# kubectl apply -f code/pvc.yaml
+# kubectl apply -f code/deployment.yaml
+# kubectl apply -f code/service.yaml
+# kubectl apply -f code/ingress.yaml
 
 echo "Deployment completed successfully!"
