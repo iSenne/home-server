@@ -26,12 +26,12 @@ spec:
           ports:
             - containerPort: 8080
           volumeMounts:
-            - name: vscode-storage
+            - name: vscode-config-storage
               mountPath: /home/coder/.config
             - name: vscode-storage
               mountPath: /home/coder/project
-            - name: wordpress-storage
-              mountPath: /home/coder/project/wordpress
+            # - name: wordpress-storage
+            #   mountPath: /home/coder/project/wordpress
           resources:
             requests:
               memory: "64Mi"
@@ -40,9 +40,12 @@ spec:
               memory: "256Mi"
               cpu: "1000m"
       volumes:
+        - name: vscode-config-storage
+          persistentVolumeClaim:
+            claimName: vscode-config-lh-pvc
         - name: vscode-storage
           persistentVolumeClaim:
             claimName: vscode-lh-pvc
-        - name: wordpress-storage
-          persistentVolumeClaim:
-            claimName: wordpress-lh-pvc
+        # - name: wordpress-storage
+        #   persistentVolumeClaim:
+        #     claimName: wordpress-lh-pvc
