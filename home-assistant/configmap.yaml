@@ -19,7 +19,7 @@ data:
       internal_url: "http://192.168.100.220:8123"
       time_zone: "Europe/Amsterdam"
       legacy_templates: false
-      customize: !include customize.yaml
+      # customize: !include customize.yaml
 
     http:
       server_port: 8123
@@ -34,6 +34,6 @@ data:
     tts:
       - platform: google_translate
 
-    automation: !include automations.yaml
-    script: !include scripts.yaml
-    scene: !include scenes.yaml
+    # automation: !include automations.yaml
+    # script: !include scripts.yaml
+    # scene: !include scenes.yaml
