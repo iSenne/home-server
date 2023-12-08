@@ -18,8 +18,8 @@ spec:
         - name: vscode
           image: codercom/code-server:latest
           securityContext:
-            runAsUser: 0 # root user
-            runAsGroup: 0 # root group
+            runAsUser: 0
+            runAsGroup: 0
           env:
             - name: PASSWORD
               value: "SeCrEtP@s5"
