@@ -17,9 +17,9 @@ spec:
       containers:
         - name: vscode
           image: codercom/code-server:latest
-          # securityContext:
-          #   runAsUser: 0 # root user
-          #   runAsGroup: 0 # root group
+          securityContext:
+            runAsUser: 0 # root user
+            runAsGroup: 0 # root group
           env:
             - name: PASSWORD
               value: "SeCrEtP@s5"
