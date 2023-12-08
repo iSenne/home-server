@@ -6,6 +6,8 @@ spec:
   selector:
     matchLabels:
       app: wordpress
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -50,4 +52,4 @@ spec:
       volumes:
         - name: wordpress-storage
           persistentVolumeClaim:
-            claimName: wordpress-lh-pvc
+            claimName: wordpress-pvc

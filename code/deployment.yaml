@@ -44,10 +44,10 @@ spec:
       volumes:
         - name: vscode-config-storage
           persistentVolumeClaim:
-            claimName: vscode-config-lh-pvc
+            claimName: vscode-config-pvc
         - name: vscode-storage
           persistentVolumeClaim:
-            claimName: vscode-lh-pvc
+            claimName: vscode-pvc
         # - name: wordpress-storage
         #   persistentVolumeClaim:
-        #     claimName: wordpress-lh-pvc
+        #     claimName: wordpress-pvc

@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: home-assistant
 spec:
+  strategy:
+    type: Recreate
   replicas: 1
   selector:
     matchLabels:
@@ -47,4 +49,4 @@ spec:
             path: /etc/localtime
         - name: home-assistant-storage
           persistentVolumeClaim:
-            claimName: home-assistant-lh-pvc
+            claimName: home-assistant-pvc

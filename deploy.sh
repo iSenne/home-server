@@ -20,14 +20,14 @@ kubectl create secret generic wordpress-secret \
   --dry-run=client \
   -o yaml | \
   kubectl apply -f -
-kubectl create secret generic punter-s3-backup \
-  --save-config \
-  --from-literal=AWS_ACCESS_KEY_ID=$PUNTER_S3_AWS_ACCESS_KEY_ID \
-  --from-literal=AWS_SECRET_ACCESS_KEY=$PUNTER_S3_AWS_SECRET_ACCESS_KEY \
-  -n longhorn-system \
-  --dry-run=client \
-  -o yaml | \
-  kubectl apply -f -
+# kubectl create secret generic punter-s3-backup \
+#   --save-config \
+#   --from-literal=AWS_ACCESS_KEY_ID=$PUNTER_S3_AWS_ACCESS_KEY_ID \
+#   --from-literal=AWS_SECRET_ACCESS_KEY=$PUNTER_S3_AWS_SECRET_ACCESS_KEY \
+#   -n longhorn-system \
+#   --dry-run=client \
+#   -o yaml | \
+#   kubectl apply -f -
 
 echo "Deploying proxy..."
 kubectl apply -f proxy/home-assistant.yaml
