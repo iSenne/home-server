@@ -12,12 +12,7 @@ spec:
       labels:
         app: home-assistant
       annotations:
-        k8s.v1.cni.cncf.io/networks: '[
-          {
-          "name" : "lan-network",
-          "interface": "eth1"
-          }
-          ]'
+        k8s.v1.cni.cncf.io/networks: lan-network
     spec:
       containers:
         - name: home-assistant
