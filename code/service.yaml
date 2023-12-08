@@ -20,5 +20,5 @@ spec:
     app: vscode
   ports:
     - protocol: TCP
-      port: 8081
-      nodePort: 30881
+      port: 8080
+      nodePort: 30880
