@@ -19,7 +19,8 @@ spec:
             - name: home-assistant-storage
               mountPath: /config
             - name: config-volume
-              mountPath: /config
+              mountPath: /config/configuration.yaml
+              subPath: configuration.yaml
             - name: tz-volume
               mountPath: /etc/localtime
               readOnly: true
