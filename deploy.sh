@@ -6,17 +6,6 @@ set -e
 # Laad omgevingsvariabelen
 export $(egrep -v '^#' .env | xargs)
 
-echo "Applying PV's'..."
-kubectl apply -f database/pv.yaml
-
-echo "Applying PVC's'..."
-kubectl apply -f database/pvc.yaml
-kubectl apply -f wordpress/pvc.yaml
-
-echo "Creating ConfigMap's'..."
-kubectl apply -f database/configmap.yaml
-kubectl apply -f wordpress/configmap.yaml
-
 echo "Creating secrets from .env..."
 kubectl create secret generic mariadb-secret \
   --save-config \
@@ -45,15 +34,21 @@ kubectl apply -f proxy/home-assistant.yaml
 kubectl apply -f proxy/node-red.yaml
 
 echo "Deploying Database..."
+kubectl apply -f database/pv.yaml
+kubectl apply -f database/pvc.yaml
+kubectl apply -f database/configmap.yaml
 kubectl apply -f database/deployment.yaml
 kubectl apply -f database/service.yaml
 
 echo "Deploying WordPress..."
+kubectl apply -f wordpress/pvc.yaml
+kubectl apply -f wordpress/configmap.yaml
 kubectl apply -f wordpress/deployment.yaml
 kubectl apply -f wordpress/service.yaml
 kubectl apply -f wordpress/ingress.yaml
 
 echo "Deploying Code..."
+kubectl apply -f code/pvc.yaml
 kubectl apply -f code/deployment.yaml
 kubectl apply -f code/service.yaml
 kubectl apply -f code/ingress.yaml
