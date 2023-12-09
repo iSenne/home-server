@@ -10,4 +10,4 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: 192.168.100.201
-    path: /mnt/data/mariadb
+    path: /home/isenne/nfs/mariadb
