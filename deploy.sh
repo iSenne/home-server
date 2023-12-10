@@ -20,6 +20,13 @@ kubectl create secret generic wordpress-secret \
   --dry-run=client \
   -o yaml | \
   kubectl apply -f -
+kubectl create secret generic node-red-secret \
+  --save-config \
+  --from-literal=NODE_RED_ADMIN_PASSWORD=$NODE_RED_ADMIN_PASSWORD \
+  --from-literal=NODE_RED_CREDENTIAL_SECRET=$NODE_RED_CREDENTIAL_SECRET \
+  --dry-run=client \
+  -o yaml | \
+  kubectl apply -f -
 kubectl create secret generic punter-s3-backup \
   --save-config \
   --from-literal=AWS_ACCESS_KEY_ID=$PUNTER_S3_AWS_ACCESS_KEY_ID \
@@ -41,7 +48,6 @@ kubectl apply -f database/deployment.yaml
 kubectl apply -f database/service.yaml
 
 echo "Deploying WordPress..."
-kubectl apply -f wordpress/pv.yaml
 kubectl apply -f wordpress/pvc.yaml
 kubectl apply -f wordpress/configmap.yaml
 kubectl apply -f wordpress/deployment.yaml
@@ -55,6 +61,13 @@ kubectl apply -f home-assistant/configmap.yaml
 kubectl apply -f home-assistant/deployment.yaml
 kubectl apply -f home-assistant/service.yaml
 kubectl apply -f home-assistant/ingress.yaml
+
+echo "Deploying Node Red..."
+kubectl apply -f node-red/pvc.yaml
+kubectl apply -f node-red/configmap.yaml
+kubectl apply -f node-red/deployment.yaml
+kubectl apply -f node-red/service.yaml
+kubectl apply -f node-red/ingress.yaml
 
 echo "Deploying Code..."
 # kubectl apply -f code/pvc.yaml
