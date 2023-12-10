@@ -20,24 +20,11 @@ spec:
           volumeMounts:
             - name: node-red-storage
               mountPath: /data
-            - name: node-red-config
-              mountPath: /data/settings.js
-              subPath: settings.js
           ports:
             - containerPort: 1880
           env:
             - name: TZ
               value: Europe/Amsterdam
-            - name: CREDENTIAL_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: node-red-secret
-                  key: NODE_RED_CREDENTIAL_SECRET
-            - name: ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: node-red-secret
-                  key: NODE_RED_ADMIN_PASSWORD
           resources:
             requests:
               memory: "64Mi"
@@ -46,9 +33,6 @@ spec:
               memory: "256Mi"
               cpu: "1000m"
       volumes:
-        - name: node-red-config
-          configMap:
-            name: node-red-config
         - name: node-red-storage
           persistentVolumeClaim:
             claimName: node-red-lh-pvc

@@ -11,3 +11,5 @@ RUN npm install node-red-contrib-actionflows \
     node-red-contrib-zigbee2mqtt \
     node-red-dashboard \
     node-red-node-mysql
+
+COPY settings.js /data/settings.js
