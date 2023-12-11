@@ -14,9 +14,11 @@ spec:
       labels:
         app: node-red
     spec:
+      terminationGracePeriodSeconds: 10
       containers:
         - name: node-red
           image: isenne/nodered:latest
+          imagePullPolicy: "Always"
           volumeMounts:
             - name: node-red-storage
               mountPath: /data
