@@ -16,7 +16,7 @@ kubectl create secret generic punter-s3-backup \
   -o yaml | \
   kubectl apply -f -
 
-kubectl create secret generic docker-hub-secret \
+kubectl create secret docker-registry docker-hub-secret \
   --save-config \
   --docker-username=$DOCKER_HUB_USERNAME \
   --docker-password=$DOCKER_HUB_PASSWORD \

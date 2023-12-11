@@ -14,12 +14,12 @@ spec:
       labels:
         app: node-red
     spec:
+      imagePullSecrets:
+        - name: docker-hub-secret
       containers:
         - name: node-red
           image: isenne/nodered:latest
           imagePullPolicy: "Always"
-          imagePullSecrets:
-            - name: docker-hub-secret
           volumeMounts:
             - name: node-red-storage
               mountPath: /data
