@@ -16,6 +16,16 @@ kubectl create secret generic punter-s3-backup \
   -o yaml | \
   kubectl apply -f -
 
+kubectl create secret generic docker-hub-secret \
+  --save-config \
+  --docker-username=$DOCKER_HUB_USERNAME \
+  --docker-password=$DOCKER_HUB_PASSWORD \
+  --docker-email=$DOCKER_HUB_EMAIL \
+  -n longhorn-system \
+  --dry-run=client \
+  -o yaml | \
+  kubectl apply -f -
+
 echo "Deploying proxy..."
 kubectl apply -f proxy/home-assistant.yaml
 kubectl apply -f proxy/node-red.yaml

@@ -1,5 +1,7 @@
 FROM nodered/node-red
 
+WORKDIR /usr/src/node-red
+
 RUN npm install node-red-contrib-actionflows \
     node-red-contrib-chronos \
     node-red-contrib-ecovacs-deebot \
@@ -12,4 +14,5 @@ RUN npm install node-red-contrib-actionflows \
     node-red-dashboard \
     node-red-node-mysql
 
-COPY settings.js /data/settings.js
+COPY --chown=node-red:node-red settings.js /usr/src/node-red/settings.js
+COPY --chown=node-red:root --chmod=755 entrypoint.sh /usr/src/node-red/entrypoint.sh
