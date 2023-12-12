@@ -26,6 +26,10 @@ kubectl create secret docker-registry docker-hub-secret \
   -o yaml | \
   kubectl apply -f -
 
+kubectl create secret generic docker-hub-secret \
+    --from-file=.dockerconfigjson=/home/isenne/.docker/config.json \
+    --type=kubernetes.io/dockerconfigjson
+
 echo "Deploying proxy..."
 kubectl apply -f proxy/home-assistant.yaml
 kubectl apply -f proxy/node-red.yaml

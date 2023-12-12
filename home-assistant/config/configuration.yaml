@@ -1,0 +1,71 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+homeassistant:
+  name: !secret street_address
+  latitude: !secret latitude
+  longitude: !secret latitude
+  elevation: 3
+  unit_system: metric
+  currency: EUR
+  country: NL
+  external_url: !secret external_url
+  internal_url: !secret internal_url
+  time_zone: "Europe/Amsterdam"
+  legacy_templates: false
+  customize: !include customize.yaml
+
+http:
+  server_port: 8123
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.0.0.0/8
+    - 127.0.0.1
+    - 10.244.0.0/16
+    - ::1
+    - 192.168.100.200/29
+
+tts:
+  - platform: google_translate
+
+recorder:
+  purge_keep_days: 5
+  db_url: !secret recorder_db_url
+
+frontend:
+  extra_module_url:
+    - /local/plugins/lovelace-card-mod/card-mod.js
+    - /local/plugins/lovelace-auto-entities/auto-entities.js
+    - /local/plugins/lovelace-layout-card/layout-card.js
+    - /local/plugins/lovelace-mushroom/mushroom.js
+    - /local/plugins/mini-graph-card/mini-graph-card-bundle.js
+    - /local/plugins/clock-weather-card/clock-weather-card.js
+
+sensor:
+  - platform: afvalbeheer
+    updateinterval: 3
+    wastecollector: ACV
+    resources:
+      - restafval
+      - gft
+      - papier
+      - pmd
+    postcode: !secret postal_code
+    streetnumber: !secret street_number
+    upcomingsensor: 1
+    dateformat: "%d-%m-%Y"
+    nameprefix: 0
+
+media_player:
+  - platform: samsungtv_tizen
+    host: 192.168.100.16
+    mac: 4c:c9:5e:16:c6:c8
+    name: Woonkamer TV
+    api_key: !secret smart_things_api_token
+    device_id: !secret samsung_device_id
+    show_channel_number: true
+    app_list: '{"Netflix": "11101200001/org.tizen.netflix-app", "Plex": "3201512006963/kIciSQlYEM.plex", "YouTube": "111299001912/9Ur5IzDKqV.TizenYouTube", "Spotify": "3201606009684/rJeHak5zRg.Spotify", "Prime Video": "3201512006785/org.tizen.primevideo", "Apple TV": "com.samsung.tv.aria-video"}'

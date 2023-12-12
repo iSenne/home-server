@@ -1,3 +1,4 @@
 .idea
 /.env*
 /node-red/settings.js
+/home-assistant/config/secrets.yaml
