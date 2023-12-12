@@ -8,7 +8,7 @@ scene: !include scenes.yaml
 homeassistant:
   name: !secret street_address
   latitude: !secret latitude
-  longitude: !secret latitude
+  longitude: !secret longitude
   elevation: 3
   unit_system: metric
   currency: EUR

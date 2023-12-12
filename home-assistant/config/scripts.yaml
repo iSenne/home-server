@@ -1,0 +1,181 @@
+badkamer_verlichting_aan_overdag:
+  alias: Badkamer - Verlichting aan overdag
+  sequence:
+    - service: light.turn_on
+      data:
+        brightness_pct: 75
+        color_temp: 400
+      entity_id: light.badkamer_lamp
+  mode: single
+  icon: mdi:shower
+badkamer_verlichting_aan_s_nachts:
+  alias: Badkamer - Verlichting aan 's nachts
+  sequence:
+    - service: light.turn_on
+      data:
+        rgb_color:
+          - 0
+          - 255
+          - 0
+        brightness_pct: 30
+      entity_id: light.badkamer_lamp
+  mode: single
+  icon: mdi:shower
+overloop_verlichting_aan_overdag:
+  alias: Overloop verlichting aan (overdag)
+  sequence:
+    - type: turn_on
+      device_id: 76ea834f9f02d6cdeedf54be50382002
+      entity_id: light.overloop_lamp
+      domain: light
+      brightness_pct: 75
+  mode: single
+  icon: hass:lightbulb-on-outline
+overloop_verlichting_aan_nacht:
+  alias: Overloop verlichting aan (nacht)
+  sequence:
+    - type: turn_on
+      device_id: 76ea834f9f02d6cdeedf54be50382002
+      entity_id: light.overloop_lamp
+      domain: light
+      brightness_pct: 10
+  mode: single
+  icon: hass:lightbulb-on
+nachtmodus_uit:
+  alias: Nachtmodus uit
+  sequence:
+    - service: input_boolean.turn_off
+      data: {}
+      entity_id: input_boolean.nacht
+  mode: single
+  icon: mdi:moon-waxing-crescent
+achtertuin_verlichting_aan:
+  alias: Achtertuin verlichting aan
+  sequence:
+    - type: turn_on
+      device_id: 63ed4c460ac2672910a6d2818881f579
+      entity_id: switch.achtertuin_eettafel_plug
+      domain: switch
+    - type: turn_on
+      device_id: b12fb1af3331762ee8483486599d076e
+      entity_id: light.achtertuin_afdak_lamp_3
+      domain: light
+      brightness_pct: 35
+    - type: turn_on
+      device_id: ccfdf02c8bdc5d6e1af5c1dd9a949d93
+      entity_id: light.achtertuin_afdak_lamp_4
+      domain: light
+      brightness_pct: 35
+    - type: turn_on
+      device_id: 87144dde92ef3af7f7aeed5d1a740c9e
+      entity_id: switch.achtertuin_schutting_plug
+      domain: switch
+  mode: single
+  icon: hass:flower
+achtertuin_verlichting_uit:
+  alias: Achtertuin verlichting uit
+  sequence:
+    - type: turn_off
+      device_id: 63ed4c460ac2672910a6d2818881f579
+      entity_id: switch.achtertuin_eettafel_plug
+      domain: switch
+    - service: light.turn_off
+      target:
+        entity_id: light.achtertuin_afdak_lamp
+      data: {}
+    - type: turn_off
+      device_id: 87144dde92ef3af7f7aeed5d1a740c9e
+      entity_id: switch.achtertuin_schutting_plug
+      domain: switch
+  mode: single
+  icon: hass:flower
+woonkamer_aan:
+  alias: Woonkamer aan
+  sequence:
+    - service: light.turn_on
+      data:
+        brightness_pct: 30
+      target:
+        device_id:
+          - 14faf20d996faff57322c29f7ff5374a
+    - type: turn_on
+      device_id: c80c7c01a9da16c3f835cd705df11a9f
+      entity_id: light.woonkamer_bank_lamp
+      domain: light
+      brightness_pct: 35
+    - type: turn_on
+      device_id: 5857e82ea3a8461f887117e44bf247ee
+      entity_id: light.woonkamer_statief_lamp
+      domain: light
+      brightness_pct: 35
+    - type: turn_on
+      device_id: 0b1170bcb02f25fe362c66d1b87af9c0
+      entity_id: light.woonkamer_mooie_lamp
+      domain: light
+      brightness_pct: 20
+    - type: turn_on
+      device_id: 71a1b5c33910a3d9ea32c513023b17e6
+      entity_id: light.woonkamer_lamp_2
+      domain: light
+      brightness_pct: 35
+    - type: turn_on
+      device_id: a4a002409a37717bd89480b52ef24ab5
+      entity_id: light.kitchen_floor
+      domain: light
+      brightness_pct: 3
+  mode: single
+  icon: hass:lightbulb-group-outline
+woonkamer_uit:
+  alias: Woonkamer uit
+  sequence:
+    - type: turn_off
+      device_id: c80c7c01a9da16c3f835cd705df11a9f
+      entity_id: light.woonkamer_bank_lamp
+      domain: light
+    - type: turn_off
+      device_id: 5857e82ea3a8461f887117e44bf247ee
+      entity_id: light.woonkamer_statief_lamp
+      domain: light
+    - type: turn_off
+      device_id: 0b1170bcb02f25fe362c66d1b87af9c0
+      entity_id: light.woonkamer_mooie_lamp
+      domain: light
+    - type: turn_off
+      device_id: e145bca5182ed6c8b1dae105bd801060
+      entity_id: light.woonkamer_lamp
+      domain: light
+    - type: turn_off
+      device_id: 14faf20d996faff57322c29f7ff5374a
+      entity_id: light.keuken_aanrecht_lamp
+      domain: light
+  mode: single
+  icon: hass:lightbulb-group-off-outline
+kledingkast_idle:
+  alias: Kledingkast - idle
+  sequence:
+    - type: turn_on
+      device_id: 274c43e6622f6567728e59dadcb65e91
+      entity_id: light.kledingkamer_kast_lamp
+      domain: light
+      brightness_pct: 10
+  mode: single
+  icon: mdi:hanger
+kledingkast_aan:
+  alias: Kledingkast - aan
+  sequence:
+    - type: turn_on
+      device_id: 274c43e6622f6567728e59dadcb65e91
+      entity_id: light.kledingkamer_kast_lamp
+      domain: light
+      brightness_pct: 70
+  mode: single
+  icon: mdi:hanger
+woonkamer_tv_uit:
+  sequence:
+    - type: turn_off
+      device_id: 3e85a69ea62e988fc73e99cb29b6c761
+      entity_id: switch.samsung_q90_series_65
+      domain: switch
+  mode: single
+  alias: Woonkamer TV uit
+  icon: mdi:television-off

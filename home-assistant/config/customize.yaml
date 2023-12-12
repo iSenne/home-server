@@ -1,0 +1,16 @@
+sensor.gft:
+  entity_picture: /local/images/gft.png
+  friendly_name: Groente-, fruit- en tuinafval
+sensor.restafval:
+  entity_picture: /local/images/rest.png
+  friendly_name: Restafval
+sensor.papier:
+  entity_picture: /local/images/papier.png
+  friendly_name: Papier
+sensor.pmd:
+  entity_picture: /local/images/pmd.png
+  friendly_name: Plastic, metalen en drinkpakken
+sensor.energy_consumed_tariff_1:
+  friendly_name: Energy - Dal tarief
+sensor.energy_consumed_tariff_2:
+  friendly_name: Energy - Normaal tarief
