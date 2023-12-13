@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zigbee2mqtt
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zigbee2mqtt
+  template:
+    metadata:
+      labels:
+        app: zigbee2mqtt
+    spec:
+      imagePullSecrets:
+        - name: docker-hub-secret
+      containers:
+        - name: zigbee2mqtt
+          image: isenne/zigbee2mqtt:latest
+          imagePullPolicy: "Always"
+          volumeMounts:
+            - name: zigbee2mqtt-storage
+              mountPath: /app/data
+          ports:
+            - containerPort: 8099
+          env:
+            - name: TZ
+              value: Europe/Amsterdam
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "500m"
+            limits:
+              memory: "2Gi"
+              cpu: "1"
+      volumes:
+        - name: zigbee2mqtt-storage
+          persistentVolumeClaim:
+            claimName: zigbee2mqtt-lh-pvc
