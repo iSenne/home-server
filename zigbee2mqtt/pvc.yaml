@@ -4,8 +4,8 @@ metadata:
   name: zigbee2mqtt-pvc
 spec:
   accessModes:
-    - ReadWriteOnce
-  # storageClassName: longhorn
+    - ReadWriteMany
+  storageClassName: longhorn
   resources:
     requests:
       storage: 5Gi

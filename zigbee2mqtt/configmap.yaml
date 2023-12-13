@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: zigbee2mqtt-config
+data:
+    configuration.yaml: |
+        homeassistant: true
+        permit_join: false
+        mqtt:
+            base_topic: zigbee2mqtt
+            server: mqtt://mosquitto-service:1883
+        serial:
+            port: /dev/zigbee2mqtt
+            disable_led: true
+        frontend:
+            port: 8099
+            # url: "!secret.yaml url"
+        device_options:
+            legacy: false
+        advanced:
+            homeassistant_legacy_entity_attributes: false
+            legacy_api: false
+            legacy_availability_payload: false
+            pan_id: 0x1B7A
+            ext_pan_id: [0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6, 0x98, 0x76]
+            channel: 11
+            network_key: [0x32, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF, 0x01, 0x23, 0x56, 0x78, 0x9A, 0xBC, 0xDE, 0xF1, 0x34]
