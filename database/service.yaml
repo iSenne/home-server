@@ -21,4 +21,4 @@ spec:
   ports:
     - protocol: TCP
       port: 3306
-      nodePort: 31306
+      nodePort: 30306
