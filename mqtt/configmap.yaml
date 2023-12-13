@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-    name: mqtt-config
+    name: mosquitto-config
 data:
     mosquitto.conf: |
         allow_anonymous true
