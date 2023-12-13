@@ -11,3 +11,5 @@ data:
         log_timestamp true
         log_type error
         log_type warning
+        log_type information
+        log_type notice
