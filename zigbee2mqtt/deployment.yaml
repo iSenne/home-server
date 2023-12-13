@@ -21,6 +21,8 @@ spec:
           volumeMounts:
             - name: zigbee2mqtt-storage
               mountPath: /app/data
+            - name: usb-device
+              mountPath: /dev/zigbee2mqtt
           ports:
             - containerPort: 8099
           env:
@@ -37,3 +39,7 @@ spec:
         - name: zigbee2mqtt-storage
           persistentVolumeClaim:
             claimName: zigbee2mqtt-lh-pvc
+        - name: usb-device
+          hostPath:
+            path: /dev/zigbee2mqtt
+            type: CharDevice
