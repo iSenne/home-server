@@ -79,6 +79,7 @@ kubectl apply -f mqtt/deployment.yaml
 kubectl apply -f mqtt/service.yaml
 
 echo "Deploying zigbee2mqtt..."
+kubectl apply -f zigbee2mqtt/pv.yaml
 kubectl apply -f zigbee2mqtt/pvc.yaml
 kubectl apply -f zigbee2mqtt/deployment.yaml
 kubectl apply -f zigbee2mqtt/service.yaml

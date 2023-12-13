@@ -38,7 +38,7 @@ spec:
       volumes:
         - name: zigbee2mqtt-storage
           persistentVolumeClaim:
-            claimName: zigbee2mqtt-lh-pvc
+            claimName: zigbee2mqtt-pvc
         - name: usb-device
           hostPath:
             path: /dev/zigbee2mqtt
