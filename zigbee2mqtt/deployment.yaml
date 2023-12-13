@@ -42,4 +42,3 @@ spec:
         - name: usb-device
           hostPath:
             path: /dev/zigbee2mqtt
-            type: CharDevice
