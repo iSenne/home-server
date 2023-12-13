@@ -21,8 +21,8 @@ spec:
             - name: zigbee2mqtt-storage
               mountPath: /app/data
             - name: config-volume
-              mountPath: /app/data/configmap.yaml
-              subPath: configmap.yaml
+              mountPath: /app/data/configuration.yaml
+              subPath: configuration.yaml
             - name: usb-device
               mountPath: /dev/zigbee2mqtt
           ports:
