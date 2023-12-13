@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: mqtt-config
+data:
+    mosquitto.conf: |
+        allow_anonymous true
+        listener 1883
+        persistence false
+        log_dest stdout
+        log_timestamp true
+        log_type error
+        log_type warning

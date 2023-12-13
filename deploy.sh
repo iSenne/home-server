@@ -73,10 +73,9 @@ kubectl apply -f node-red/deployment.yaml
 kubectl apply -f node-red/service.yaml
 kubectl apply -f node-red/ingress.yaml
 
-echo "Deploying Code..."
-# kubectl apply -f code/pvc.yaml
-# kubectl apply -f code/deployment.yaml
-# kubectl apply -f code/service.yaml
-# kubectl apply -f code/ingress.yaml
+echo "Deploying MQTT..."
+kubectl apply -f mqtt/configmap.yaml
+kubectl apply -f mqtt/deployment.yaml
+kubectl apply -f mqtt/service.yaml
 
 echo "Deployment completed successfully!"
