@@ -22,7 +22,7 @@ spec:
             - name: zigbee2mqtt-storage
               mountPath: /app/data
             - name: usb-device
-              mountPath: /dev/zigbee2mqtt
+              mountPath: /dev/ttyACM0
           ports:
             - containerPort: 8099
           env:
