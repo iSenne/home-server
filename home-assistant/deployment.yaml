@@ -21,10 +21,7 @@ spec:
           image: ghcr.io/home-assistant/home-assistant:stable
           volumeMounts:
             - name: home-assistant-storage
-              mountPath: /config
-            - name: config-volume
-              mountPath: /config/configuration.yaml
-              subPath: configuration.yaml
+              mountPath: /config/.storage
             - name: tz-volume
               mountPath: /etc/localtime
               readOnly: true
@@ -41,12 +38,9 @@ spec:
               memory: "256Mi"
               cpu: "1000m"
       volumes:
-        - name: config-volume
-          configMap:
-            name: home-assistant-config
         - name: tz-volume
           hostPath:
             path: /etc/localtime
         - name: home-assistant-storage
           persistentVolumeClaim:
-            claimName: home-assistant-pvc
+            claimName: home-assistant-lh-pvc

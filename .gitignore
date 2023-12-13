@@ -2,3 +2,6 @@
 /.env*
 /node-red/settings.js
 /home-assistant/config/secrets.yaml
+.DS_Store
+/home-assistant/config/secrets_local.yaml
+/home-assistant/config/secrets_production.yaml

@@ -23,10 +23,17 @@ FROM alpine/git as lovelace-layout-card
 WORKDIR /repo
 RUN git clone https://github.com/thomasloven/lovelace-layout-card .
 
+##### Config selector
+FROM alpine as config_selector
+ARG BUILD_ENV=production
+COPY config/ /config/
+RUN rm /config/secrets-example.yaml
+RUN if [ "$BUILD_ENV" = "local" ] ; then mv /config/secrets_local.yaml /config/secrets.yaml && rm /config/secrets_production.yaml ; else mv /config/secrets_production.yaml /config/secrets.yaml && rm /config/secrets_local.yaml ; fi
+
 ##### Build image
 FROM ghcr.io/home-assistant/home-assistant:stable
 
-ADD config /config
+COPY --from=config_selector /config/ /config/
 
 COPY --from=afvalbeheer /repo/custom_components/afvalbeheer /config/custom_components/afvalbeheer
 COPY --from=samsungtv /repo/custom_components/samsungtv_tizen /config/custom_components/samsungtv_tizen
