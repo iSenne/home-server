@@ -16,9 +16,12 @@ spec:
       annotations:
         k8s.v1.cni.cncf.io/networks: lan-network
     spec:
+      imagePullSecrets:
+        - name: docker-hub-secret
       containers:
         - name: home-assistant
-          image: ghcr.io/home-assistant/home-assistant:stable
+          image: isenne/home-assistant:latest
+          imagePullPolicy: "Always"
           volumeMounts:
             - name: home-assistant-storage
               mountPath: /config/.storage
