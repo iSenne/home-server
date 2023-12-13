@@ -8,4 +8,5 @@ RUN if [ "$BUILD_ENV" = "local" ] ; then mv /config/secrets_local.yaml /config/s
 ##### Build image
 FROM koenkk/zigbee2mqtt:latest
 
+COPY --from=config_selector /config/ /app
 COPY --from=config_selector /config/ /app/data/
