@@ -17,6 +17,8 @@ spec:
         - name: zigbee2mqtt
           image: koenkk/zigbee2mqtt:latest
           imagePullPolicy: "Always"
+          securityContext:
+            privileged: true
           volumeMounts:
             - name: zigbee2mqtt-storage
               mountPath: /app/data
