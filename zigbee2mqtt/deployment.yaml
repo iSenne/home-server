@@ -51,3 +51,5 @@ spec:
         - name: usb-device
           hostPath:
             path: /dev/ttyACM0
+            type: CharDevice
++
