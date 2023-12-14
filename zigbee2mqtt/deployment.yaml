@@ -28,7 +28,7 @@ spec:
               mountPath: /app/data/configuration.yaml
               subPath: configuration.yaml
             - name: usb-device
-              mountPath: /dev/ttyUSB0
+              mountPath: /dev/ttyACM0
           ports:
             - containerPort: 8099
           env:
@@ -50,4 +50,4 @@ spec:
             name: zigbee2mqtt-config
         - name: usb-device
           hostPath:
-            path: /dev/ttyUSB0
+            path: /dev/ttyACM0

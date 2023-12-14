@@ -10,7 +10,7 @@ data:
             base_topic: zigbee2mqtt
             server: mqtt://mosquitto-service:1883
         serial:
-            port: /dev/ttyUSB0
+            port: /dev/ttyACM0
             disable_led: true
         frontend:
             port: 8099
