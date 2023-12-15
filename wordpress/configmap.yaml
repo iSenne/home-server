@@ -6,3 +6,11 @@ data:
     WORDPRESS_DB_NAME: "isenne_dev"
     WORDPRESS_DB_USER: "isenne"
     WORDPRESS_DB_HOST: "mariadb-service"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: wordpress-apache-config
+data:
+    apache-config.conf: |
+        ServerName isenne.dev
