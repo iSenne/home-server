@@ -11,6 +11,12 @@ sensor.pmd:
   entity_picture: /local/images/pmd.png
   friendly_name: Plastic, metalen en drinkpakken
 sensor.energy_consumed_tariff_1:
-  friendly_name: Energy - Dal tarief
+  friendly_name: Stroom Dal
 sensor.energy_consumed_tariff_2:
-  friendly_name: Energy - Normaal tarief
+  friendly_name: Stroom Normaal
+sensor.energy_produced_tariff_1:
+  friendly_name: Teruglevering Dal
+sensor.energy_produced_tariff_2:
+  friendly_name: Teruglevering Normaal
+sensor.gas_consumed:
+  friendly_name: Gas

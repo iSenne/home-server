@@ -19,6 +19,18 @@ homeassistant:
   legacy_templates: false
   customize: !include customize.yaml
 
+tts:
+  - platform: google_translate
+
+frontend:
+  extra_module_url:
+    - /local/plugins/lovelace-card-mod/card-mod.js
+    - /local/plugins/lovelace-auto-entities/auto-entities.js
+    - /local/plugins/lovelace-layout-card/layout-card.js
+    - /local/plugins/lovelace-mushroom/mushroom.js
+    - /local/plugins/mini-graph-card/mini-graph-card-bundle.js
+    - /local/plugins/clock-weather-card/clock-weather-card.js
+
 http:
   server_port: 8123
   use_x_forwarded_for: true
@@ -29,21 +41,31 @@ http:
     - ::1
     - 192.168.100.200/29
 
-tts:
-  - platform: google_translate
-
 recorder:
   purge_keep_days: 5
   db_url: !secret recorder_db_url
+  exclude:
+    domains:
+      - automation
+      - updater
+    entity_globs:
+      - sensor.weather_*
+    entities:
+      - sun.sun
+      - sensor.last_boot
+      - sensor.date
+      - sensor.home_assistant_v2_db
+    event_types:
+      - call_service
 
-frontend:
-  extra_module_url:
-    - /local/plugins/lovelace-card-mod/card-mod.js
-    - /local/plugins/lovelace-auto-entities/auto-entities.js
-    - /local/plugins/lovelace-layout-card/layout-card.js
-    - /local/plugins/lovelace-mushroom/mushroom.js
-    - /local/plugins/mini-graph-card/mini-graph-card-bundle.js
-    - /local/plugins/clock-weather-card/clock-weather-card.js
+logger:
+  default: warning
+
+device_tracker:
+  - platform: tado
+    username: !secret tado_email
+    password: !secret tado_password
+    home_id: !secret tado_home_id
 
 sensor:
   - platform: afvalbeheer
@@ -70,9 +92,168 @@ sensor:
 media_player:
   - platform: samsungtv_tizen
     host: 192.168.100.16
-    mac: 4c:c9:5e:16:c6:c8
+    mac: !secret samsung_mac
     name: Woonkamer TV
     api_key: !secret smart_things_api_token
     device_id: !secret samsung_device_id
     show_channel_number: true
     app_list: '{"Netflix": "11101200001/org.tizen.netflix-app", "Plex": "3201512006963/kIciSQlYEM.plex", "YouTube": "111299001912/9Ur5IzDKqV.TizenYouTube", "Spotify": "3201606009684/rJeHak5zRg.Spotify", "Prime Video": "3201512006785/org.tizen.primevideo", "Apple TV": "com.samsung.tv.aria-video"}'
+
+light:
+  - platform: group
+    name: Woonkamer Verlichting
+    entities:
+      - light.woonkamer_lamp
+      - light.woonkamer_bank_lamp
+      - light.woonkamer_statief_lamp
+      - light.woonkamer_mooie_lamp
+
+binary_sensor:
+  - platform: group
+    name: Woonkamer beweging
+    device_class: occupancy
+    entities:
+      - binary_sensor.woonkamer_bewegingssensor_voor_occupancy
+      - binary_sensor.woonkamer_bewegingssensor_achter_occupancy
+  - platform: group
+    name: Gang Bewegingssensor
+    device_class: occupancy
+    entities:
+      - binary_sensor.gang_bewegingssensor_occupancy
+      - binary_sensor.gang_wc_bewegingssensor_occupancy
+  - platform: group
+    name: Zolder Bewegingssensor
+    device_class: occupancy
+    entities:
+      - binary_sensor.zolder_kantoor_bewegingssensor_occupancy
+      - binary_sensor.zolder_trap_bewegingssensor_occupancy
+  - platform: group
+    name: Overloop Beweging
+    device_class: occupancy
+    entities:
+      - binary_sensor.eetkamer_trap_bewegingssensor_occupancy
+      - binary_sensor.overloop_bewegingssensor_occupancy
+      - binary_sensor.zolder_trap_bewegingssensor_occupancy
+  - platform: group
+    name: Kledingkamer Kast Sensor
+    device_class: opening
+    entities:
+      - binary_sensor.kledingkamer_kast_sensor_1_contact
+      - binary_sensor.kledingkamer_kast_sensor_2_contact
+      - binary_sensor.kledingkamer_kast_sensor_3_contact
+      - binary_sensor.kledingkamer_kast_sensor_4_contact
+      - binary_sensor.kledingkamer_kast_sensor_5_contact
+  - platform: group
+    name: Kantoor Senne beweging
+    device_class: occupancy
+    entities:
+      - binary_sensor.zolder_trap_bewegingssensor_occupancy
+      - binary_sensor.zolder_kantoor_bewegingssensor_occupancy
+      - binary_sensor.zolder_kantoor_2_bewegingssensor_occupancy
+
+utility_meter:
+  monthly_offpiek_energy:
+    source: sensor.energy_consumed_tariff_1
+    name: Maandelijks dal tarief
+    cycle: monthly
+  monthly_piek_energy:
+    source: sensor.energy_consumed_tariff_2
+    name: Maandelijks piek tarief
+    cycle: monthly
+  monthly_gas:
+    source: sensor.gas_consumed
+    name: Maandelijks gas
+    cycle: monthly
+
+template:
+  - binary_sensor:
+      - name: Formula 1
+        state: >-
+          {% set data = states('input_text.f1_next_weekend') | from_json %}
+          {% set start_time = strptime(data.start, '%Y-%m-%d %H:%M:%S') | as_timestamp %}
+          {% set end_time = strptime(data.end, '%Y-%m-%d %H:%M:%S') | as_timestamp %}
+          {% set now = now() | as_timestamp %}
+          {% if start_time <= now <= (end_time + 10800) %}
+            on
+          {% else %}
+            off
+          {% endif %}
+        attributes:
+          name: "{{ (states('input_text.f1_next_weekend') | from_json).name }}"
+          sprint: "{{ (states('input_text.f1_next_weekend') | from_json).sprint }}"
+          start: "{{ (states('input_text.f1_next_weekend') | from_json).start }}"
+          end: "{{ (states('input_text.f1_next_weekend') | from_json).end }}"
+          s1_type: "{{ (states('input_text.f1_next_session_one') | from_json).type }}"
+          s1_date: "{{ (states('input_text.f1_next_session_one') | from_json).time }}"
+          s2_type: "{{ (states('input_text.f1_next_session_two') | from_json).type }}"
+          s2_date: "{{ (states('input_text.f1_next_session_two') | from_json).time }}"
+          s3_type: "{{ (states('input_text.f1_next_session_three') | from_json).type }}"
+          s3_date: "{{ (states('input_text.f1_next_session_three') | from_json).time }}"
+          s4_type: "{{ (states('input_text.f1_next_session_four') | from_json).type }}"
+          s4_date: "{{ (states('input_text.f1_next_session_four') | from_json).time }}"
+          s5_type: "{{ (states('input_text.f1_next_session_five') | from_json).type }}"
+          s5_date: "{{ (states('input_text.f1_next_session_five') | from_json).time }}"
+
+input_text:
+  f1_next_weekend:
+    name: "Formula 1 next race weekend"
+    icon: mdi:flag-checkered
+    initial: "{}"
+  f1_next_session_one:
+    name: "Formula 1 first session"
+    icon: mdi:numeric-1-circle-outline
+    initial: "{}"
+  f1_next_session_two:
+    name: "Formula 1 second session"
+    icon: mdi:numeric-2-circle-outline
+    initial: "{}"
+  f1_next_session_three:
+    name: "Formula 1 third session"
+    icon: mdi:numeric-3-circle-outline
+    initial: "{}"
+  f1_next_session_four:
+    name: "Formula 1 fourth session"
+    icon: mdi:numeric-4-circle-outline
+    initial: "{}"
+  f1_next_session_five:
+    name: "Formula 1 fifth session"
+    icon: mdi:numeric-5-circle-outline
+    initial: "{}"
+  keuken_knop:
+    name: "Keuken Knop"
+    icon: mdi:countertop-outline
+    initial: "{}"
+
+input_boolean:
+  nacht:
+    name: Nacht
+    icon: mdi:moon-waning-crescent
+  vakantie:
+    name: Vakantie
+    icon: mdi:palm-tree
+  zolder_beweging_aan:
+    name: Zolder beweging aan
+    icon: mdi:motion-sensor
+
+input_number:
+  stroom_normaal_tarief:
+    name: Stroom normaal tarief
+    icon: mdi:currency-eur
+    min: 0
+    max: 10
+    step: 0.0001
+    unit_of_measurement: EUR/kWh
+  stroom_dal_tarief:
+    name: Stroom dal tarief
+    icon: mdi:currency-eur
+    min: 0
+    max: 10
+    step: 0.0001
+    unit_of_measurement: EUR/kWh
+  gas_tarief:
+    name: Gas tarief
+    icon: mdi:currency-eur
+    min: 0
+    max: 10
+    step: 0.0001
+    unit_of_measurement: EUR/m³
