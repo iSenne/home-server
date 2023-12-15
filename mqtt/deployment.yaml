@@ -22,11 +22,11 @@ spec:
               mountPath: /mosquitto/config
           resources:
             requests:
-              memory: "1Gi"
-              cpu: "500m"
+              memory: "128Mi"
+              cpu: "250m"
             limits:
-              memory: "2Gi"
-              cpu: "1000m"
+              memory: "256Mi"
+              cpu: "500m"
       volumes:
         - name: config-volume
           configMap:

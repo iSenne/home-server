@@ -30,11 +30,11 @@ spec:
               value: Europe/Amsterdam
           resources:
             requests:
-              memory: "64Mi"
+              memory: "512Mi"
               cpu: "250m"
             limits:
-              memory: "256Mi"
-              cpu: "1000m"
+              memory: "1Gi"
+              cpu: "500m"
       volumes:
         - name: node-red-storage
           persistentVolumeClaim:
