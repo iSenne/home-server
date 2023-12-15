@@ -44,11 +44,11 @@ spec:
               mountPath: /var/www/html
           resources:
             requests:
-              memory: "256Mi"
-              cpu: "125m"
-            limits:
-              memory: "512Mi"
+              memory: "64Mi"
               cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "1000m"
       volumes:
         - name: isenne-dev-storage
           persistentVolumeClaim:
