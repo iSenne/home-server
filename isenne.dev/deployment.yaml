@@ -20,11 +20,11 @@ spec:
             - containerPort: 8443
           env:
             - name: WORDPRESS_ENABLE_REVERSE_PROXY
-              value: yes
+              value: "yes"
             - name: WORDPRESS_AUTO_UPDATE_LEVEL
-              value: minor
+              value: "minor"
             - name: WORDPRESS_ENABLE_HTTPS
-              value: yes
+              value: "yes"
             - name: WORDPRESS_DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
