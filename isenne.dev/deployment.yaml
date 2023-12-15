@@ -50,11 +50,11 @@ spec:
               mountPath: /var/www/html
           resources:
             requests:
-              memory: "1Gi"
-              cpu: "1"
+              memory: "512Mi"
+              cpu: "250m"
             limits:
-              memory: "2Gi"
-              cpu: "2"
+              memory: "1Gi"
+              cpu: "500m"
       volumes:
         - name: isenne-dev-storage
           persistentVolumeClaim:
