@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: isenne.dev-lh-pvc
+  name: isenne-dev-lh-pvc
 spec:
   accessModes:
     - ReadWriteMany

@@ -49,7 +49,7 @@ kubectl apply -f database/deployment.yaml
 kubectl apply -f database/service.yaml
 
 echo "Deploying isenne.dev..."
-kubectl create secret generic isenne.dev-secret \
+kubectl create secret generic isenne-dev-secret \
   --save-config \
   --from-literal=WORDPRESS_DB_PASSWORD=$WORDPRESS_DB_PASSWORD \
   --dry-run=client \
