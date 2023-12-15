@@ -17,7 +17,7 @@ spec:
         - name: wordpress
           image: wordpress:php8.1-fpm
           ports:
-            - containerPort: 80
+            - containerPort: 9000
           env:
             - name: WORDPRESS_DB_PASSWORD
               valueFrom:
@@ -42,9 +42,6 @@ spec:
           volumeMounts:
             - name: wordpress-storage
               mountPath: /var/www/html
-            # - name: apache-config-volume
-            #   mountPath: /etc/apache2/conf.d/apache-config.conf
-            #   subPath: apache-config.conf
           resources:
             requests:
               memory: "256Mi"
@@ -56,6 +53,3 @@ spec:
         - name: wordpress-storage
           persistentVolumeClaim:
             claimName: wordpress-lh-pvc
-        # - name: apache-config-volume
-        #   configMap:
-        #     name: wordpress-apache-config
