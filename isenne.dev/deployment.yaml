@@ -15,26 +15,26 @@ spec:
     spec:
       containers:
         - name: isenne-dev
-          image: wordpress:latest
+          image: bitnami/wordpress
           ports:
             - containerPort: 80
           env:
-            - name: WORDPRESS_DB_PASSWORD
+            - name: WORDPRESS_DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: isenne-dev-secret
                   key: WORDPRESS_DB_PASSWORD
-            - name: WORDPRESS_DB_HOST
+            - name: WORDPRESS_DATABASE_HOST
               valueFrom:
                 configMapKeyRef:
                   name: isenne-dev-config
                   key: WORDPRESS_DB_HOST
-            - name: WORDPRESS_DB_USER
+            - name: WORDPRESS_DATABASE_USER
               valueFrom:
                 configMapKeyRef:
                   name: isenne-dev-config
                   key: WORDPRESS_DB_USER
-            - name: WORDPRESS_DB_NAME
+            - name: WORDPRESS_DATABASE_NAME
               valueFrom:
                 configMapKeyRef:
                   name: isenne-dev-config
