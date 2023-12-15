@@ -17,7 +17,7 @@ spec:
         - name: isenne-dev
           image: bitnami/wordpress
           ports:
-            - containerPort: 8080
+            - containerPort: 8443
           env:
             - name: WORDPRESS_DATABASE_PASSWORD
               valueFrom:
