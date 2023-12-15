@@ -13,17 +13,6 @@ spec:
       labels:
         app: wordpress
     spec:
-      initContainers:
-        - name: symlink-apache-config
-          image: busybox
-          command:
-            - "ln"
-            - "-s"
-            - "/etc/apache2/conf-available/apache-config.conf"
-            - "/etc/apache2/conf-enabled/apache-config.conf"
-          volumeMounts:
-            - name: apache-config-volume
-              mountPath: /etc/apache2/conf-available
       containers:
         - name: wordpress
           image: wordpress:latest
@@ -54,7 +43,8 @@ spec:
             - name: wordpress-storage
               mountPath: /var/www/html
             - name: apache-config-volume
-              mountPath: /etc/apache2/conf-available
+              mountPath: /etc/apache2/conf-enabled/apache-config.conf
+              subPath: apache-config.conf
           resources:
             requests:
               memory: "256Mi"
