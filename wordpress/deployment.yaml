@@ -47,11 +47,11 @@ spec:
             #   subPath: apache-config.conf
           resources:
             requests:
-              memory: "256Mi"
-              cpu: "125m"
-            limits:
               memory: "512Mi"
               cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
       volumes:
         - name: wordpress-storage
           persistentVolumeClaim:
