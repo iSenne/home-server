@@ -5,7 +5,7 @@ metadata:
 spec:
   ingressClassName: "caddy"
   rules:
-    - host: isenne-dev
+    - host: isenne.dev
       http:
         paths:
           - path: /
