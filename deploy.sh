@@ -56,7 +56,8 @@ kubectl create secret generic wordpress-secret \
   -o yaml | \
   kubectl apply -f -
 kubectl apply -f wordpress/pvc.yaml
-kubectl apply -f wordpress/configmap.yaml
+kubectl apply -f wordpress/configmap-wordpress.yaml
+kubectl apply -f wordpress/configmap-apache.yaml
 kubectl apply -f wordpress/deployment.yaml
 kubectl apply -f wordpress/service.yaml
 kubectl apply -f wordpress/ingress.yaml
@@ -83,5 +84,8 @@ kubectl apply -f zigbee2mqtt/pvc.yaml
 kubectl apply -f zigbee2mqtt/configmap.yaml
 kubectl apply -f zigbee2mqtt/deployment.yaml
 kubectl apply -f zigbee2mqtt/service.yaml
+
+echo "Deploying grafana..."
+kubectl apply -f loadbalancer/grafana-ingress.yaml
 
 echo "Deployment completed successfully!"
