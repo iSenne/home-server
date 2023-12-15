@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: isenne.dev
+spec:
+  selector:
+    matchLabels:
+      app: isenne.dev
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: isenne.dev
+    spec:
+      containers:
+        - name: isenne.dev
+          image: wordpress:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: WORDPRESS_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: isenne.dev-secret
+                  key: WORDPRESS_DB_PASSWORD
+            - name: WORDPRESS_DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: isenne.dev-config
+                  key: WORDPRESS_DB_HOST
+            - name: WORDPRESS_DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: isenne.dev-config
+                  key: WORDPRESS_DB_USER
+            - name: WORDPRESS_DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: isenne.dev-config
+                  key: WORDPRESS_DB_NAME
+          volumeMounts:
+            - name: isenne.dev-storage
+              mountPath: /var/www/html
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "125m"
+            limits:
+              memory: "512Mi"
+              cpu: "250m"
+      volumes:
+        - name: isenne.dev-storage
+          persistentVolumeClaim:
+            claimName: isenne.dev-lh-pvc

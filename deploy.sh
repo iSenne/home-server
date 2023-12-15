@@ -48,18 +48,18 @@ kubectl apply -f database/configmap.yaml
 kubectl apply -f database/deployment.yaml
 kubectl apply -f database/service.yaml
 
-echo "Deploying WordPress..."
-kubectl create secret generic wordpress-secret \
+echo "Deploying isenne.dev..."
+kubectl create secret generic isenne.dev-secret \
   --save-config \
   --from-literal=WORDPRESS_DB_PASSWORD=$WORDPRESS_DB_PASSWORD \
   --dry-run=client \
   -o yaml | \
   kubectl apply -f -
-kubectl apply -f wordpress/pvc.yaml
-kubectl apply -f wordpress/configmap.yaml
-kubectl apply -f wordpress/deployment.yaml
-kubectl apply -f wordpress/service.yaml
-kubectl apply -f wordpress/ingress.yaml
+kubectl apply -f isenne.dev/pvc.yaml
+kubectl apply -f isenne.dev/configmap.yaml
+kubectl apply -f isenne.dev/deployment.yaml
+kubectl apply -f isenne.dev/service.yaml
+kubectl apply -f isenne.dev/ingress.yaml
 
 echo "Deploying Home Assistant..."
 kubectl apply -f home-assistant/pvc.yaml
