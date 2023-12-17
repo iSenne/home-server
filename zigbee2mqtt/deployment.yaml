@@ -50,5 +50,4 @@ spec:
             name: zigbee2mqtt-config
         - name: usb-device
           hostPath:
-            path: /dev/ttyACM0
-            type: CharDevice
+            path: /dev/ttyUSB
