@@ -2,7 +2,7 @@ homeassistant: true
 permit_join: false
 mqtt:
   base_topic: zigbee2mqtt
-  server: mqtt://mqtt:1883
+  server: mqtt://192.168.100.201:30883
 serial:
   port: /dev/ttyACM0
   disable_led: true
