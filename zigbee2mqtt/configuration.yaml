@@ -8,10 +8,13 @@ serial:
   disable_led: true
 frontend:
   port: 8099
-  url: https://mqtt.isenne.net
+  url: https://z2m.punter3.nl
 advanced:
   homeassistant_legacy_entity_attributes: false
   legacy_api: false
   legacy_availability_payload: false
+  log_level: warn
 device_options:
   legacy: false
+devices: devices.yaml
+groups: groups.yaml

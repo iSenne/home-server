@@ -28,30 +28,6 @@ services:
     extra_hosts:
       - host.docker.internal:172.17.0.1
 
-  external-site:
-    image: alpine
-    command: tail -f /dev/null
-    depends_on:
-      - traefik
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.external-site-http.rule=Host(`${EXTERNAL_DOMAIN}`)"
-      - "traefik.http.routers.external-site-http.entrypoints=web"
-      - "traefik.http.routers.external-site-http.middlewares=redirect-to-https"
-
-      - "traefik.http.routers.external-site-https.rule=Host(`${EXTERNAL_DOMAIN}`)"
-      - "traefik.http.routers.external-site-https.entrypoints=websecure"
-      - "traefik.http.routers.external-site-https.tls=true"
-      - "traefik.http.routers.external-site-https.tls.certresolver=myresolver"
-      - "traefik.http.routers.external-site-https.service=external-site"
-
-      - "traefik.http.services.external-site.loadbalancer.server.scheme=http"
-      - "traefik.http.services.external-site.loadbalancer.server.port=80"
-      - "traefik.http.services.external-site.loadbalancer.server.url=${EXTERNAL_IP}"
-
-      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
-
-
   homeassistant:
     image: ghcr.io/home-assistant/home-assistant:stable
     container_name: homeassistant
@@ -80,8 +56,6 @@ services:
     image: koenkk/zigbee2mqtt:latest
     container_name: zigbee2mqtt
     restart: unless-stopped
-    depends_on:
-      - mqtt
     environment:
       - TZ=${TZ}
     ports:
@@ -113,18 +87,6 @@ services:
     ports:
       - ${MYSQL_PORT}:${MYSQL_PORT}
 
-  mqtt:
-    image: eclipse-mosquitto:latest
-    container_name: mqtt
-    restart: unless-stopped
-    ports:
-      - ${MQTT_PORT}:${MQTT_PORT}
-      - ${MQTT_WEBSOCKET_PORT}:${MQTT_WEBSOCKET_PORT}
-    volumes:
-      - ./mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf
-      - ./mqtt/data:/mosquitto/data
-      - ./mqtt/log:/mosquitto/log
-
   vscode:
     image: codercom/code-server:latest
     container_name: vscode
@@ -133,13 +95,11 @@ services:
     depends_on:
       - homeassistant
       - zigbee2mqtt
-      - mqtt
     environment:
       - PASSWORD=${VSCODE_PASSWORD}
       - DOCKER_USER=${VSCODE_USER}
     volumes:
       - ./hassio:/home/coder/project/hassio
-      - ./mqtt:/home/coder/project/mqtt
       - ./zigbee2mqtt:/home/coder/project/zigbee2mqtt
       - ./vscode/.config:/home/coder/.config
       - ./vscode:/home/coder/project
@@ -157,7 +117,6 @@ services:
     restart: unless-stopped
     depends_on:
       - homeassistant
-      - mqtt
     ports:
       - ${NODERED_PORT}:${NODERED_PORT}
     environment:
