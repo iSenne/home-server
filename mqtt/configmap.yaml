@@ -13,3 +13,7 @@ data:
         log_type warning
         log_type information
         log_type notice
+        connection punter-bridge
+        address 192.168.100.32:1883
+        topic # out 0
+        topic # in 0
