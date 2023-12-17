@@ -7,7 +7,7 @@ data:
         homeassistant: true
         permit_join: false
         mqtt:
-            base_topic: zigbee2mqtt
+            base_topic: z2m
             server: mqtt://mosquitto-service:1883
         serial:
             port: /dev/ttyACM0
