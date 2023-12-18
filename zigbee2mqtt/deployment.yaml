@@ -25,9 +25,9 @@ spec:
           volumeMounts:
             - name: zigbee2mqtt-storage
               mountPath: /app/data
-            # - name: config-volume
-            #   mountPath: /app/data/configuration.yaml
-            #   subPath: configuration.yaml
+            - name: config-volume
+              mountPath: /app/data/configuration.yaml
+              subPath: configuration.yaml
             - name: usb-device
               mountPath: /dev/ttyACM0
           ports:
@@ -46,9 +46,9 @@ spec:
         - name: zigbee2mqtt-storage
           persistentVolumeClaim:
             claimName: zigbee2mqtt-pvc
-        # - name: config-volume
-        #   configMap:
-        #     name: zigbee2mqtt-config
+        - name: config-volume
+          configMap:
+            name: zigbee2mqtt-config
         - name: usb-device
           hostPath:
             path: /dev/ttyUSB0
