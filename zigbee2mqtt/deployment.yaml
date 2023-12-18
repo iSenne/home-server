@@ -15,18 +15,19 @@ spec:
         app: zigbee2mqtt
     spec:
       imagePullSecrets:
+        - name: docker-hub-secret
       containers:
         - name: zigbee2mqtt
-          image: koenkk/zigbee2mqtt:latest
+          image: isenne/zigbee2mqtt:latest
           imagePullPolicy: "Always"
           securityContext:
             privileged: true
           volumeMounts:
             - name: zigbee2mqtt-storage
               mountPath: /app/data
-            - name: config-volume
-              mountPath: /app/data/configuration.yaml
-              subPath: configuration.yaml
+            # - name: config-volume
+            #   mountPath: /app/data/configuration.yaml
+            #   subPath: configuration.yaml
             - name: usb-device
               mountPath: /dev/ttyACM0
           ports:
@@ -45,9 +46,9 @@ spec:
         - name: zigbee2mqtt-storage
           persistentVolumeClaim:
             claimName: zigbee2mqtt-pvc
-        - name: config-volume
-          configMap:
-            name: zigbee2mqtt-config
+        # - name: config-volume
+        #   configMap:
+        #     name: zigbee2mqtt-config
         - name: usb-device
           hostPath:
             path: /dev/ttyUSB0
