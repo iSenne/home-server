@@ -14,11 +14,9 @@ spec:
       labels:
         app: zigbee2mqtt
     spec:
-      imagePullSecrets:
-        - name: docker-hub-secret
       containers:
         - name: zigbee2mqtt
-          image: isenne/zigbee2mqtt:latest
+          image: koenkk/zigbee2mqtt:latest
           imagePullPolicy: "Always"
           securityContext:
             privileged: true
@@ -51,4 +49,4 @@ spec:
             name: zigbee2mqtt-config
         - name: usb-device
           hostPath:
-            path: /dev/ttyUSB0
+            path: /dev/zigbee2mqtt
