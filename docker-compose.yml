@@ -2,32 +2,6 @@ version: '3.8'
 
 # Basic Home Assistant setup
 services:
-  traefik:
-    container_name: traefik
-    image: traefik:latest
-    restart: unless-stopped
-    command:
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:${HTTP_PORT}"
-      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
-      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
-      - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
-      - "--entrypoints.websecure.address=:${HTTPS_PORT}"
-      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-      - "--certificatesresolvers.myresolver.acme.email=${HTTPS_EMAIL}"
-      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
-    ports:
-      - ${HTTP_PORT}:${HTTP_PORT}
-      - ${HTTPS_PORT}:${HTTPS_PORT}
-      - ${TRAEFIK_PORT}:${TRAEFIK_PORT}
-    volumes:
-      - ./letsencrypt:/letsencrypt
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    extra_hosts:
-      - host.docker.internal:172.17.0.1
-
   homeassistant:
     image: ghcr.io/home-assistant/home-assistant:stable
     container_name: homeassistant
@@ -45,12 +19,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
     ports:
       - ${HA_PORT}:${HA_PORT}
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.ha.rule=Host(`${HA_DOMAIN}`)"
-      - "traefik.http.routers.ha.entrypoints=websecure"
-      - "traefik.http.routers.ha.tls.certresolver=myresolver"
-      - "traefik.http.services.ha.loadbalancer.server.port=${HA_PORT}"
 
   zigbee2mqtt:
     image: koenkk/zigbee2mqtt:latest
@@ -64,13 +32,6 @@ services:
       - ./zigbee2mqtt:/app/data
     devices:
       - ${Z2M_DEVICE}:/dev/ttyACM0
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.z2m.rule=Host(`${Z2M_DOMAIN}`)"
-      - "traefik.http.routers.z2m.entrypoints=websecure"
-      - "traefik.http.routers.z2m.tls.certresolver=myresolver"
-      - "traefik.http.routers.z2m.middlewares=auth"
-      - "traefik.http.middlewares.auth.basicauth.users=isenne:$$2y$$05$$4bFdT3rjSsNctvpBG1pvIu3/I2H65y15KgHV3cCNaYw1c.dKjrvr2"
 
   mariadb:
     image: mariadb:latest
@@ -105,11 +66,6 @@ services:
       - ./vscode:/home/coder/project
     ports:
       - ${VSCODE_PORT}:${VSCODE_PORT}
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.code.rule=Host(`${VSCODE_DOMAIN}`)"
-      - "traefik.http.routers.code.entrypoints=websecure"
-      - "traefik.http.routers.code.tls.certresolver=myresolver"
 
   nodered:
     image: nodered/node-red:latest
@@ -124,11 +80,6 @@ services:
     volumes:
       - ./nodered/data:/data
       - ./nodered/settings.js:/data/settings.js
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.nr.rule=Host(`nr.punter3.nl`)"
-      - "traefik.http.routers.nr.entrypoints=websecure"
-      - "traefik.http.routers.nr.tls.certresolver=myresolver"
 
   pihole:
     container_name: pihole
