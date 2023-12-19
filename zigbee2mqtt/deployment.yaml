@@ -35,11 +35,11 @@ spec:
               value: Europe/Amsterdam
           resources:
             requests:
-              memory: "512Mi"
-              cpu: "250m"
-            limits:
               memory: "1Gi"
-              cpu: "500m"
+              cpu: "1"
+            limits:
+              memory: "4Gi"
+              cpu: "4"
       volumes:
         - name: zigbee2mqtt-storage
           persistentVolumeClaim:
@@ -49,4 +49,4 @@ spec:
             name: zigbee2mqtt-config
         - name: usb-device
           hostPath:
-            path: /dev/serial/by-id/usb-Silicon_Labs_slae.sh_cc2652rb_stick_-_slaesh_s_iot_stuff_00_12_4B_00_25_9B_BE_1B-if00-port0
+            path: /dev/ttyUSB0
