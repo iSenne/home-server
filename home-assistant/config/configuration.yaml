@@ -129,7 +129,7 @@ binary_sensor:
     name: Zolder Bewegingssensor
     device_class: occupancy
     entities:
-      - binary_sensor.zolder_kantoor_bewegingssensor_occupancy
+      - binary_sensor.kantoor_senne_bewegingssensor_occupancy
       - binary_sensor.zolder_trap_bewegingssensor_occupancy
   - platform: group
     unique_id: overloop_beweging
@@ -155,8 +155,8 @@ binary_sensor:
     device_class: occupancy
     entities:
       - binary_sensor.zolder_trap_bewegingssensor_occupancy
-      - binary_sensor.zolder_kantoor_bewegingssensor_occupancy
-      - binary_sensor.zolder_kantoor_2_bewegingssensor_occupancy
+      - binary_sensor.kantoor_senne_bewegingssensor_occupancy
+      - binary_sensor.kantoor_senne_bewegingssensor_2_occupancy
 
 utility_meter:
   monthly_offpiek_energy:
