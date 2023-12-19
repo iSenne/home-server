@@ -20,19 +20,6 @@ services:
     ports:
       - ${HA_PORT}:${HA_PORT}
 
-  zigbee2mqtt:
-    image: koenkk/zigbee2mqtt:latest
-    container_name: zigbee2mqtt
-    restart: unless-stopped
-    environment:
-      - TZ=${TZ}
-    ports:
-      - ${Z2M_PORT}:${Z2M_PORT}
-    volumes:
-      - ./zigbee2mqtt:/app/data
-    devices:
-      - ${Z2M_DEVICE}:/dev/ttyACM0
-
   mariadb:
     image: mariadb:latest
     container_name: mariadb
