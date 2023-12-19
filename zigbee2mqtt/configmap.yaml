@@ -14,7 +14,6 @@ data:
             disable_led: true
         frontend:
             port: 8099
-            # url: "!secret.yaml url"
         device_options:
             legacy: false
         advanced:
@@ -25,6 +24,7 @@ data:
             ext_pan_id: [0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6, 0x98, 0x76]
             channel: 15
             network_key: [0x32, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF, 0x01, 0x23, 0x56, 0x78, 0x9A, 0xBC, 0xDE, 0xF1, 0x34]
+            log_level: warn
             log_output:
                 - console
         devices: devices.yaml
