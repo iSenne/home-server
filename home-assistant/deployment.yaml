@@ -23,6 +23,8 @@ spec:
           volumeMounts:
             - name: home-assistant-storage
               mountPath: /config/.storage
+            - name: home-assistant-images
+              mountPath: /config/image
             - name: tz-volume
               mountPath: /etc/localtime
               readOnly: true
@@ -45,3 +47,6 @@ spec:
         - name: home-assistant-storage
           persistentVolumeClaim:
             claimName: home-assistant-lh-pvc
+        - name: home-assistant-images
+          persistentVolumeClaim:
+            claimName: home-assistant-images-lh-pvc
