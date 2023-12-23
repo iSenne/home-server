@@ -182,20 +182,20 @@ template:
             off
           {% endif %}
         attributes:
-          name: "{{ (states('input_text.f1_next_weekend') | from_json).name }}"
-          sprint: "{{ (states('input_text.f1_next_weekend') | from_json).sprint }}"
-          start: "{{ (states('input_text.f1_next_weekend') | from_json).start }}"
-          end: "{{ (states('input_text.f1_next_weekend') | from_json).end }}"
-          s1_type: "{{ (states('input_text.f1_next_session_one') | from_json).type }}"
-          s1_date: "{{ (states('input_text.f1_next_session_one') | from_json).time }}"
-          s2_type: "{{ (states('input_text.f1_next_session_two') | from_json).type }}"
-          s2_date: "{{ (states('input_text.f1_next_session_two') | from_json).time }}"
-          s3_type: "{{ (states('input_text.f1_next_session_three') | from_json).type }}"
-          s3_date: "{{ (states('input_text.f1_next_session_three') | from_json).time }}"
-          s4_type: "{{ (states('input_text.f1_next_session_four') | from_json).type }}"
-          s4_date: "{{ (states('input_text.f1_next_session_four') | from_json).time }}"
-          s5_type: "{{ (states('input_text.f1_next_session_five') | from_json).type }}"
-          s5_date: "{{ (states('input_text.f1_next_session_five') | from_json).time }}"
+          name: "{{ (states('input_text.f1_next_weekend') | from_json).name if (states('input_text.f1_next_weekend') | from_json).name is defined else 'N/A' }}"
+          sprint: "{{ (states('input_text.f1_next_weekend') | from_json).sprint if (states('input_text.f1_next_weekend') | from_json).sprint is defined else 'N/A' }}"
+          start: "{{ (states('input_text.f1_next_weekend') | from_json).start if (states('input_text.f1_next_weekend') | from_json).start is defined else 'N/A' }}"
+          end: "{{ (states('input_text.f1_next_weekend') | from_json).end if (states('input_text.f1_next_weekend') | from_json).end is defined else 'N/A' }}"
+          s1_type: "{{ ((states('input_text.f1_next_session_one') | from_json).type) if ((states('input_text.f1_next_session_one') | from_json).type) is defined else 'N/A' }}"
+          s1_date: "{{ ((states('input_text.f1_next_session_one') | from_json).time) if ((states('input_text.f1_next_session_one') | from_json).time) is defined else 'N/A' }}"
+          s2_type: "{{ ((states('input_text.f1_next_session_two') | from_json).type) if ((states('input_text.f1_next_session_two') | from_json).type) is defined else 'N/A' }}"
+          s2_date: "{{ ((states('input_text.f1_next_session_two') | from_json).time) if ((states('input_text.f1_next_session_two') | from_json).time) is defined else 'N/A' }}"
+          s3_type: "{{ ((states('input_text.f1_next_session_three') | from_json).type) if ((states('input_text.f1_next_session_three') | from_json).type) is defined else 'N/A' }}"
+          s3_date: "{{ ((states('input_text.f1_next_session_three') | from_json).time) if ((states('input_text.f1_next_session_three') | from_json).time) is defined else 'N/A' }}"
+          s4_type: "{{ ((states('input_text.f1_next_session_four') | from_json).type) if ((states('input_text.f1_next_session_four') | from_json).type) is defined else 'N/A' }}"
+          s4_date: "{{ ((states('input_text.f1_next_session_four') | from_json).time) if ((states('input_text.f1_next_session_four') | from_json).time) is defined else 'N/A' }}"
+          s5_type: "{{ ((states('input_text.f1_next_session_five') | from_json).type) if ((states('input_text.f1_next_session_five') | from_json).type) is defined else 'N/A' }}"
+          s5_date: "{{ ((states('input_text.f1_next_session_five') | from_json).time) if ((states('input_text.f1_next_session_five') | from_json).time) is defined else 'N/A' }}"
 
 input_text:
   f1_next_weekend:
