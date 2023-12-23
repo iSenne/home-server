@@ -14,12 +14,16 @@ spec:
       annotations:
         k8s.v1.cni.cncf.io/networks: lan-network
     spec:
-      dnsPolicy: "None"
+      dnsPolicy: "Default"
       dnsConfig:
         nameservers:
           - "8.8.8.8"
           - "1.1.1.1"
           - "208.67.222.222"
+        searches:
+          - "default.svc.cluster.local"
+          - "svc.cluster.local"
+          - "cluster.local"
       imagePullSecrets:
         - name: docker-hub-secret
       containers:
