@@ -169,11 +169,15 @@ template:
       - name: Formula 1
         state: >-
           {% set data = states('input_text.f1_next_weekend') | from_json %}
-          {% set start_time = strptime(data.start, '%Y-%m-%d %H:%M:%S') | as_timestamp %}
-          {% set end_time = strptime(data.end, '%Y-%m-%d %H:%M:%S') | as_timestamp %}
-          {% set now = now() | as_timestamp %}
-          {% if start_time <= now <= (end_time + 10800) %}
-            on
+          {% if data.start and data.end %}
+            {% set start_time = strptime(data.start, '%Y-%m-%d %H:%M:%S') | as_timestamp %}
+            {% set end_time = strptime(data.end, '%Y-%m-%d %H:%M:%S') | as_timestamp %}
+            {% set now = now() | as_timestamp %}
+            {% if start_time <= now <= (end_time + 10800) %}
+              on
+            {% else %}
+              off
+            {% endif %}
           {% else %}
             off
           {% endif %}
