@@ -60,6 +60,8 @@ recorder:
 
 logger:
   default: warning
+  logs:
+    homeassistant.components.mqtt.light.schema_json: error
 
 device_tracker:
   - platform: tado
@@ -88,16 +90,6 @@ sensor:
       - type: load_1m
       - type: load_5m
       - type: load_15m
-
-media_player:
-  - platform: samsungtv_tizen
-    host: 192.168.100.16
-    mac: !secret samsung_mac
-    name: Woonkamer TV
-    api_key: !secret smart_things_api_token
-    device_id: !secret samsung_device_id
-    show_channel_number: true
-    app_list: '{"Netflix": "11101200001/org.tizen.netflix-app", "Plex": "3201512006963/kIciSQlYEM.plex", "YouTube": "111299001912/9Ur5IzDKqV.TizenYouTube", "Spotify": "3201606009684/rJeHak5zRg.Spotify", "Prime Video": "3201512006785/org.tizen.primevideo", "Apple TV": "com.samsung.tv.aria-video"}'
 
 light:
   - platform: group
