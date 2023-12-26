@@ -1,0 +1,20 @@
+- platform: afvalbeheer
+  updateinterval: 3
+  wastecollector: ACV
+  resources:
+    - restafval
+    - gft
+    - papier
+    - pmd
+  postcode: !secret postal_code
+  streetnumber: !secret street_number
+  upcomingsensor: 1
+  dateformat: "%d-%m-%Y"
+  nameprefix: 0
+- platform: systemmonitor
+  resources:
+    - type: processor_use
+    - type: memory_use_percent
+    - type: load_1m
+    - type: load_5m
+    - type: load_15m

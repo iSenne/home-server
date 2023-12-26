@@ -1,0 +1,14 @@
+nacht:
+  name: Nacht
+  icon: mdi:moon-waning-crescent
+vakantie:
+  name: Vakantie
+  icon: mdi:palm-tree
+zolder_beweging_aan:
+  name: Zolder beweging
+  initial: true
+  icon: mdi:motion-sensor
+gang_beweging:
+  name: Gang beweging
+  initial: true
+  icon: mdi:motion-sensor

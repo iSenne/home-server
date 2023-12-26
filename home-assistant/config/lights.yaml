@@ -1,0 +1,8 @@
+- platform: group
+  unique_id: woonkamer_verlichting
+  name: Woonkamer Verlichting
+  entities:
+    - light.woonkamer_lamp
+    - light.woonkamer_bank_lamp
+    - light.woonkamer_statief_lamp
+    - light.woonkamer_mooie_lamp

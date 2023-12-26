@@ -1,0 +1,47 @@
+- platform: group
+  unique_id: woonkamer_beweging
+  name: Woonkamer beweging
+  device_class: occupancy
+  entities:
+    - binary_sensor.woonkamer_bewegingssensor_voor_occupancy
+    - binary_sensor.woonkamer_bewegingssensor_achter_occupancy
+- platform: group
+  unique_id: gang_beweging
+  name: Gang Bewegingssensor
+  device_class: occupancy
+  entities:
+    - binary_sensor.gang_bewegingssensor_occupancy
+    - binary_sensor.gang_wc_bewegingssensor_occupancy
+- platform: group
+  unique_id: zolder_beweging
+  name: Zolder Bewegingssensor
+  device_class: occupancy
+  entities:
+    - binary_sensor.kantoor_senne_bewegingssensor_occupancy
+    - binary_sensor.zolder_trap_bewegingssensor_occupancy
+- platform: group
+  unique_id: overloop_beweging
+  name: Overloop Beweging
+  device_class: occupancy
+  entities:
+    - binary_sensor.eetkamer_trap_bewegingssensor_occupancy
+    - binary_sensor.overloop_bewegingssensor_occupancy
+    - binary_sensor.zolder_trap_bewegingssensor_occupancy
+- platform: group
+  unique_id: kledingkamer_kast_sensor
+  name: Kledingkamer Kast Sensor
+  device_class: opening
+  entities:
+    - binary_sensor.kledingkamer_kast_sensor_1_contact
+    - binary_sensor.kledingkamer_kast_sensor_2_contact
+    - binary_sensor.kledingkamer_kast_sensor_3_contact
+    - binary_sensor.kledingkamer_kast_sensor_4_contact
+    - binary_sensor.kledingkamer_kast_sensor_5_contact
+- platform: group
+  unique_id: kantoor_senne_beweging
+  name: Kantoor Senne beweging
+  device_class: occupancy
+  entities:
+    - binary_sensor.zolder_trap_bewegingssensor_occupancy
+    - binary_sensor.kantoor_senne_bewegingssensor_occupancy
+    - binary_sensor.kantoor_senne_bewegingssensor_2_occupancy

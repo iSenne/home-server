@@ -1,0 +1,12 @@
+monthly_offpiek_energy:
+  source: sensor.energy_consumed_tariff_1
+  name: Maandelijks dal tarief
+  cycle: monthly
+monthly_piek_energy:
+  source: sensor.energy_consumed_tariff_2
+  name: Maandelijks piek tarief
+  cycle: monthly
+monthly_gas:
+  source: sensor.gas_consumed
+  name: Maandelijks gas
+  cycle: monthly

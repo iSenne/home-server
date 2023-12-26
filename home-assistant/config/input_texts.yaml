@@ -1,0 +1,28 @@
+f1_next_weekend:
+  name: "Formula 1 next race weekend"
+  icon: mdi:flag-checkered
+  initial: "{}"
+f1_next_session_one:
+  name: "Formula 1 first session"
+  icon: mdi:numeric-1-circle-outline
+  initial: "{}"
+f1_next_session_two:
+  name: "Formula 1 second session"
+  icon: mdi:numeric-2-circle-outline
+  initial: "{}"
+f1_next_session_three:
+  name: "Formula 1 third session"
+  icon: mdi:numeric-3-circle-outline
+  initial: "{}"
+f1_next_session_four:
+  name: "Formula 1 fourth session"
+  icon: mdi:numeric-4-circle-outline
+  initial: "{}"
+f1_next_session_five:
+  name: "Formula 1 fifth session"
+  icon: mdi:numeric-5-circle-outline
+  initial: "{}"
+keuken_knop:
+  name: "Keuken Knop"
+  icon: mdi:countertop-outline
+  initial: "{}"
