@@ -1,10 +1,11 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mariadb-pvc
+  name: mariadb-lh-pvc
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
+  storageClassName: longhorn
   resources:
     requests:
       storage: 25Gi
