@@ -33,5 +33,5 @@ spec:
             name: miflora-config
         - name: dbus-socket
           hostPath:
-            path: /var/run/dbus
+            path: /var/run/dbus/system_bus_socket
             type: Socket
