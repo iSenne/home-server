@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         app: node-red
+      annotations:
+        k8s.v1.cni.cncf.io/networks: lan-network
     spec:
       imagePullSecrets:
         - name: docker-hub-secret
