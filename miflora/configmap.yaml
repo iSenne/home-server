@@ -6,6 +6,8 @@ data:
     config.ini: |
         [General]
         reporting_method = mqtt-json
+        [Daemon]
+        enabled = true
         [MQTT]
         hostname = mosquitto-service
         port = 1883
