@@ -22,9 +22,14 @@ spec:
             privileged: true
             capabilities:
               add: ["NET_ADMIN", "SYS_ADMIN"]
+          env:
+            - name: DBUS_SYSTEM_BUS_ADDRESS
+              value: unix:path=/var/run/dbus/system_bus_socket
           volumeMounts:
             - name: config-volume
               mountPath: /config
+            - name: dbus-socket
+              mountPath: /var/run/dbus
           resources:
             requests:
               memory: "256Mi"
@@ -36,3 +41,7 @@ spec:
         - name: config-volume
           configMap:
             name: miflora-config
+        - name: dbus-socket
+          hostPath:
+            path: /var/run/dbus/system_bus_socket
+            type: Socket
