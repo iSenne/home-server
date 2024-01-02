@@ -30,7 +30,6 @@ spec:
               mountPath: /config
             - name: dbus-socket
               mountPath: /var/run/dbus/system_bus_socket
-              subPath: system_bus_socket
           resources:
             requests:
               memory: "256Mi"
