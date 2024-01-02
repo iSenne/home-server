@@ -12,9 +12,12 @@ spec:
       labels:
         app: miflora
     spec:
+      imagePullSecrets:
+        - name: docker-hub-secret
       containers:
         - name: miflora
-          image: miflora-mqtt-daemon:latest
+          image: isenne/miflora-mqtt-daemon:latest
+          imagePullPolicy: "Always"
           volumeMounts:
             - name: config-volume
               mountPath: /config

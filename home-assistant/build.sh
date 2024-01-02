@@ -17,3 +17,5 @@ echo "Run docker"
 docker run -it -d -p 8123:8123 -v home_assistant_storage:/config/.storage --name homeassistant --pull always isenne/home-assistant:local
 
 docker logs homeassistant -f
+
+docker buildx build --platform linux/amd64,linux/arm64 -t isenne/miflora-mqtt-daemon . --push
