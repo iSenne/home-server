@@ -20,6 +20,8 @@ spec:
           imagePullPolicy: "Always"
           securityContext:
             privileged: true
+            capabilities:
+              add: ["NET_ADMIN", "SYS_ADMIN"]
           volumeMounts:
             - name: config-volume
               mountPath: /config
