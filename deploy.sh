@@ -42,7 +42,6 @@ kubectl create secret generic mariadb-secret \
   --dry-run=client \
   -o yaml | \
   kubectl apply -f -
-kubectl apply -f database/pv.yaml
 kubectl apply -f database/pvc.yaml
 kubectl apply -f database/configmap.yaml
 kubectl apply -f database/deployment.yaml
@@ -86,5 +85,9 @@ kubectl apply -f zigbee2mqtt/service.yaml
 
 echo "Deploying grafana..."
 kubectl apply -f loadbalancer/grafana-ingress.yaml
+
+echo "Deploying miflora..."
+kubectl apply -f miflora/configmap.yaml
+kubectl apply -f miflora/deployment.yaml
 
 echo "Deployment completed successfully!"

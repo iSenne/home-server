@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: miflora-config
+data:
+    config.ini: |
+        [General]
+        reporting_method = mqtt-json
+        [MQTT]
+        hostname = mosquitto-service
+        port = 1883
+        base_topic = miflora
+        [Sensors]
+        Plant@OfficeSenne = C4:7C:8D:6C:58:D1
