@@ -7,3 +7,4 @@ secrets_production.yaml
 /test
 configuration-production.yaml
 configuration-local.yaml
+*.m3u
