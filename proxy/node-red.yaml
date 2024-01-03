@@ -30,7 +30,7 @@ metadata:
 spec:
   ingressClassName: "caddy"
   rules:
-    - host: "nr.punter3.nl"
+    - host: "oldnr.punter3.nl"
       http:
         paths:
           - path: /
