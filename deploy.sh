@@ -31,8 +31,8 @@ kubectl create secret generic docker-hub-secret \
     --type=kubernetes.io/dockerconfigjson
 
 echo "Deploying proxy..."
-kubectl apply -f proxy/home-assistant.yaml
-kubectl apply -f proxy/node-red.yaml
+# kubectl apply -f proxy/home-assistant.yaml
+# kubectl apply -f proxy/node-red.yaml
 
 echo "Deploying Database..."
 kubectl create secret generic mariadb-secret \

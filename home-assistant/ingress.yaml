@@ -5,7 +5,7 @@ metadata:
 spec:
   ingressClassName: "caddy"
   rules:
-    - host: testha.punter3.nl
+    - host: ha.punter3.nl
       http:
         paths:
           - pathType: Prefix
