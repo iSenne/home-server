@@ -19,6 +19,7 @@
         sprint: "{{ (states('input_text.f1_next_weekend') | from_json).sprint if (states('input_text.f1_next_weekend') | from_json).sprint is defined else 'N/A' }}"
         start: "{{ (states('input_text.f1_next_weekend') | from_json).start if (states('input_text.f1_next_weekend') | from_json).start is defined else 'N/A' }}"
         end: "{{ (states('input_text.f1_next_weekend') | from_json).end if (states('input_text.f1_next_weekend') | from_json).end is defined else 'N/A' }}"
+        slug: "{{ (states('input_text.f1_next_weekend') | from_json).slug if (states('input_text.f1_next_weekend') | from_json).slug is defined else 'N/A' }}"
         s1_type: "{{ ((states('input_text.f1_next_session_one') | from_json).type) if ((states('input_text.f1_next_session_one') | from_json).type) is defined else 'N/A' }}"
         s1_date: "{{ ((states('input_text.f1_next_session_one') | from_json).time) if ((states('input_text.f1_next_session_one') | from_json).time) is defined else 'N/A' }}"
         s2_type: "{{ ((states('input_text.f1_next_session_two') | from_json).type) if ((states('input_text.f1_next_session_two') | from_json).type) is defined else 'N/A' }}"

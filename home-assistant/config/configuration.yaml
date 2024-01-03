@@ -16,7 +16,6 @@ homeassistant:
   external_url: !secret external_url
   internal_url: !secret internal_url
   time_zone: "Europe/Amsterdam"
-  legacy_templates: false
   customize: !include customize.yaml
 
 tts:
@@ -62,12 +61,6 @@ logger:
   default: warning
   logs:
     homeassistant.components.mqtt.light.schema_json: error
-
-device_tracker:
-  - platform: tado
-    username: !secret tado_email
-    password: !secret tado_password
-    home_id: !secret tado_home_id
 
 sensor: !include sensors.yaml
 light: !include lights.yaml
