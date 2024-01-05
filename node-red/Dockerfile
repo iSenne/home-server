@@ -11,7 +11,6 @@ RUN npm install node-red-contrib-actionflows \
     node-red-contrib-sonos-plus \
     node-red-contrib-tado-client \
     node-red-contrib-zigbee2mqtt \
-    node-red-dashboard \
     node-red-node-mysql \
     @flowfuse/node-red-dashboard
 
