@@ -45,3 +45,6 @@
     - binary_sensor.zolder_trap_bewegingssensor_occupancy
     - binary_sensor.kantoor_senne_bewegingssensor_occupancy
     - binary_sensor.kantoor_senne_bewegingssensor_2_occupancy
+- platform: meteoalarm
+  country: "netherlands"
+  province: "Utrecht"

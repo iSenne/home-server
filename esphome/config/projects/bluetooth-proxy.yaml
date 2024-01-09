@@ -1,0 +1,47 @@
+substitutions:
+  name: bluetooth-proxy-zolder
+  friendly_name: Bluetooth Proxy Zolder
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  name_add_mac_suffix: true
+  project:
+    name: esphome.bluetooth-proxy
+    version: "1.0"
+
+esp32:
+  board: wemos_d1_mini32
+  framework:
+    type: esp-idf
+
+wifi:
+  ssid: Triple S
+  password: ScT85SkJ89
+  manual_ip:
+    static_ip: 192.168.100.7
+    gateway: 192.168.100.1
+    subnet: 255.255.255.0
+
+api:
+logger:
+ota:
+improv_serial:
+
+dashboard_import:
+  package_import_url: github://esphome/firmware/bluetooth-proxy/esp32-generic.yaml@main
+
+esp32_ble_tracker:
+  scan_parameters:
+    # We currently use the defaults to ensure Bluetooth
+    # can co-exist with WiFi In the future we may be able to
+    # enable the built-in coexistence logic in ESP-IDF
+    active: true
+
+bluetooth_proxy:
+  active: true
+
+button:
+  - platform: safe_mode
+    name: Safe Mode Boot
+    entity_category: diagnostic
