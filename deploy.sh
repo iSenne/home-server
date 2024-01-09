@@ -60,6 +60,19 @@ kubectl apply -f isenne.dev/deployment.yaml
 kubectl apply -f isenne.dev/service.yaml
 kubectl apply -f isenne.dev/ingress.yaml
 
+echo "Deploying f1endaal.nl..."
+kubectl create secret generic f1endaal-nl-secret \
+  --save-config \
+  --from-literal=WORDPRESS_DB_PASSWORD=$WORDPRESS_DB_PASSWORD \
+  --dry-run=client \
+  -o yaml | \
+  kubectl apply -f -
+kubectl apply -f f1endaal.nl/pvc.yaml
+kubectl apply -f f1endaal.nl/configmap.yaml
+kubectl apply -f f1endaal.nl/deployment.yaml
+kubectl apply -f f1endaal.nl/service.yaml
+kubectl apply -f f1endaal.nl/ingress.yaml
+
 echo "Deploying Home Assistant..."
 kubectl apply -f home-assistant/pvc.yaml
 kubectl apply -f home-assistant/deployment.yaml

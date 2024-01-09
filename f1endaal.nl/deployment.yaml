@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: f1endaal-nl
+spec:
+  selector:
+    matchLabels:
+      app: f1endaal-nl
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: f1endaal-nl
+    spec:
+      containers:
+        - name: f1endaal-nl
+          image: bitnami/wordpress
+          ports:
+            - containerPort: 8080
+          env:
+            - name: WORDPRESS_ENABLE_REVERSE_PROXY
+              value: "yes"
+            - name: WORDPRESS_AUTO_UPDATE_LEVEL
+              value: "minor"
+            - name: WORDPRESS_ENABLE_HTTPS
+              value: "yes"
+            - name: WORDPRESS_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: f1endaal-nl-secret
+                  key: WORDPRESS_DB_PASSWORD
+            - name: WORDPRESS_DATABASE_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: f1endaal-nl-config
+                  key: WORDPRESS_DB_HOST
+            - name: WORDPRESS_DATABASE_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: f1endaal-nl-config
+                  key: WORDPRESS_DB_USER
+            - name: WORDPRESS_DATABASE_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: f1endaal-nl-config
+                  key: WORDPRESS_DB_NAME
+          volumeMounts:
+            - name: f1endaal-nl-storage
+              mountPath: /var/www/html
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "125m"
+            limits:
+              memory: "512Mi"
+              cpu: "250m"
+      volumes:
+        - name: f1endaal-nl-storage
+          persistentVolumeClaim:
+            claimName: f1endaal-nl-lh-pvc
