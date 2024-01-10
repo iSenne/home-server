@@ -47,7 +47,7 @@ spec:
                   key: WORDPRESS_DB_NAME
           volumeMounts:
             - name: isenne-dev-storage
-              mountPath: /var/www/html
+              mountPath: /bitnami/wordpress
           resources:
             requests:
               memory: "256Mi"
