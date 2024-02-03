@@ -13,7 +13,7 @@ FROM alpine/git as lovelace-card-mod
 WORKDIR /repo
 RUN git clone https://github.com/thomasloven/lovelace-card-mod .
 
-##### Card Mod
+##### Auto entities
 FROM alpine/git as lovelace-auto-entities
 WORKDIR /repo
 RUN git clone https://github.com/thomasloven/lovelace-auto-entities .
@@ -45,3 +45,5 @@ COPY --from=lovelace-layout-card /repo /config/www/plugins/lovelace-layout-card
 COPY --from=isenne/multistage:mushroom /app/dist /config/www/plugins/lovelace-mushroom
 COPY --from=isenne/multistage:mini-graph-card /app/dist /config/www/plugins/mini-graph-card
 COPY --from=isenne/multistage:clock-weather-card /app/dist /config/www/plugins/clock-weather-card
+COPY --from=isenne/multistage:meteoalarm-card /app/dist /config/www/plugins/meteoalarm-card
+COPY --from=isenne/multistage:hourly-weather /app/dist /config/www/plugins/hourly-weather

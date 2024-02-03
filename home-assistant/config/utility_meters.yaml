@@ -1,12 +1,27 @@
 monthly_offpiek_energy:
+  unique_id: monthly_offpiek_energy
   source: sensor.energy_consumed_tariff_1
   name: Maandelijks dal tarief
   cycle: monthly
 monthly_piek_energy:
+  unique_id: monthly_piek_energy
   source: sensor.energy_consumed_tariff_2
   name: Maandelijks piek tarief
   cycle: monthly
 monthly_gas:
+  unique_id: monthly_gas
   source: sensor.gas_consumed
   name: Maandelijks gas
+  cycle: monthly
+monthly_energy:
+  source: sensor.energy
+  name: Monthly Energy
+  cycle: monthly
+  tariffs:
+    - peak
+    - offpeak
+monthly_livingroom_tv:
+  unique_id: monthly_livingroom_tv
+  source: sensor.woonkamer_tv_plug_energy
+  name: Maandelijks Woonkamer TV
   cycle: monthly

@@ -1,5 +1,4 @@
-##### Build stage
-FROM node:latest as clock-weather-card
+FROM node:latest
 WORKDIR /app
 RUN git clone https://github.com/pkissling/clock-weather-card .
 RUN npm install --legacy-peer-deps

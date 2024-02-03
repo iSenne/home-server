@@ -29,6 +29,8 @@ frontend:
     - /local/plugins/lovelace-mushroom/mushroom.js
     - /local/plugins/mini-graph-card/mini-graph-card-bundle.js
     - /local/plugins/clock-weather-card/clock-weather-card.js
+    - /local/plugins/meteoalarm-card/meteoalarm-card.js
+    - /local/plugins/hourly-weather/hourly-weather.js
 
 http:
   server_port: 8123
@@ -61,6 +63,7 @@ logger:
   default: warning
   logs:
     homeassistant.components.mqtt.light.schema_json: error
+    homeassistant.components.sonos.speaker: error
 
 sensor: !include sensors.yaml
 light: !include lights.yaml

@@ -21,7 +21,7 @@ sensor.energy_produced_tariff_2:
 sensor.gas_consumed:
   friendly_name: Gas
 sensor.envoy_122240034838_energy_production_today:
-  friendly_name: Stroom productie vandaag
+  friendly_name: Stroom productie
 sensor.envoy_122240034838_energy_production_last_seven_days:
   friendly_name: Stroom productie afgelopen 7 dagen
 sensor.envoy_122240034838_current_power_production:
