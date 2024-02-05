@@ -20,7 +20,7 @@ spec:
             - containerPort: 8080
           envFrom:
             - configMapRef:
-              name: f1endaal-nl-config
+                name: f1endaal-nl-config
           env:
             - name: WORDPRESS_TABLE_PREFIX
               valueFrom:
