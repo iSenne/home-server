@@ -20,7 +20,7 @@ spec:
             - containerPort: 8080
           envFrom:
             - configMapRef:
-                name: isenne-dev-secret
+                name: isenne-dev-config
           env:
             - name: WORDPRESS_TABLE_PREFIX
               valueFrom:
