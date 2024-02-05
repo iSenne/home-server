@@ -50,7 +50,11 @@ kubectl apply -f database/service.yaml
 echo "Deploying isenne.dev..."
 kubectl create secret generic isenne-dev-secret \
   --save-config \
-  --from-literal=WORDPRESS_DB_PASSWORD=$WORDPRESS_DB_PASSWORD \
+  --from-literal=WORDPRESS_DATABASE_PASSWORD=$ISENNE_DEV_DB_PASSWORD \
+  --from-literal=WORDPRESS_TABLE_PREFIX=$ISENNE_DEV_DB_PREFIX \
+  --from-literal=WORDPRESS_USERNAME=$WORDPRESS_USERNAME \
+  --from-literal=WORDPRESS_PASSWORD=$WORDPRESS_PASSWORD \
+  --from-literal=WORDPRESS_EMAIL=$WORDPRESS_EMAIL \
   --dry-run=client \
   -o yaml | \
   kubectl apply -f -
@@ -63,7 +67,11 @@ kubectl apply -f isenne.dev/ingress.yaml
 echo "Deploying f1endaal.nl..."
 kubectl create secret generic f1endaal-nl-secret \
   --save-config \
-  --from-literal=WORDPRESS_DB_PASSWORD=$WORDPRESS_DB_PASSWORD \
+  --from-literal=WORDPRESS_DATABASE_PASSWORD=$F1ENDAAL_NL_DB_PASSWORD \
+  --from-literal=WORDPRESS_TABLE_PREFIX=$F1ENDAAL_NL_DB_PREFIX \
+  --from-literal=WORDPRESS_USERNAME=$WORDPRESS_USERNAME \
+  --from-literal=WORDPRESS_PASSWORD=$WORDPRESS_PASSWORD \
+  --from-literal=WORDPRESS_EMAIL=$WORDPRESS_EMAIL \
   --dry-run=client \
   -o yaml | \
   kubectl apply -f -

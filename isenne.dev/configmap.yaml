@@ -3,6 +3,10 @@ kind: ConfigMap
 metadata:
     name: isenne-dev-config
 data:
-    WORDPRESS_DB_NAME: "isenne_dev"
-    WORDPRESS_DB_USER: "isenne"
-    WORDPRESS_DB_HOST: "mariadb-service"
+    WORDPRESS_DATABASE_NAME: "isenne_dev"
+    WORDPRESS_DATABASE_USER: "isenne"
+    WORDPRESS_DATABASE_HOST: "mariadb-service"
+    WORDPRESS_AUTO_UPDATE_LEVEL: "minor"
+    WORDPRESS_BLOG_NAME: "iSenne.dev"
+    WORDPRESS_ENABLE_HTTPS: "yes"
+    WORDPRESS_ENABLE_REVERSE_PROXY: "yes"

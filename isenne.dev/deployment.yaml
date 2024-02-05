@@ -18,36 +18,38 @@ spec:
           image: bitnami/wordpress
           ports:
             - containerPort: 8080
+          envFrom:
+            - configMapRef:
+              name: isenne-dev-secret
           env:
-            - name: WORDPRESS_ENABLE_REVERSE_PROXY
-              value: "yes"
-            - name: WORDPRESS_AUTO_UPDATE_LEVEL
-              value: "minor"
-            - name: WORDPRESS_ENABLE_HTTPS
-              value: "yes"
+            - name: WORDPRESS_TABLE_PREFIX
+              valueFrom:
+                secretKeyRef:
+                  name: isenne-dev-secret
+                  key: WORDPRESS_TABLE_PREFIX
             - name: WORDPRESS_DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: isenne-dev-secret
-                  key: WORDPRESS_DB_PASSWORD
-            - name: WORDPRESS_DATABASE_HOST
+                  key: WORDPRESS_DATABASE_PASSWORD
+            - name: WORDPRESS_USERNAME
               valueFrom:
-                configMapKeyRef:
-                  name: isenne-dev-config
-                  key: WORDPRESS_DB_HOST
-            - name: WORDPRESS_DATABASE_USER
+                secretKeyRef:
+                  name: isenne-dev-secret
+                  key: WORDPRESS_USERNAME
+            - name: WORDPRESS_PASSWORD
               valueFrom:
-                configMapKeyRef:
-                  name: isenne-dev-config
-                  key: WORDPRESS_DB_USER
-            - name: WORDPRESS_DATABASE_NAME
+                secretKeyRef:
+                  name: isenne-dev-secret
+                  key: WORDPRESS_PASSWORD
+            - name: WORDPRESS_EMAIL
               valueFrom:
-                configMapKeyRef:
-                  name: isenne-dev-config
-                  key: WORDPRESS_DB_NAME
+                secretKeyRef:
+                  name: isenne-dev-secret
+                  key: WORDPRESS_EMAIL
           volumeMounts:
             - name: isenne-dev-storage
-              mountPath: /var/www/html
+              mountPath: /bitnami/wordpress
           resources:
             requests:
               memory: "512Mi"

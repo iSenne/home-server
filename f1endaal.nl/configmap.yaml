@@ -3,6 +3,10 @@ kind: ConfigMap
 metadata:
     name: f1endaal-nl-config
 data:
-    WORDPRESS_DB_NAME: "f1endaal_nl"
-    WORDPRESS_DB_USER: "isenne"
-    WORDPRESS_DB_HOST: "mariadb-service"
+    WORDPRESS_DATABASE_NAME: "f1endaal_nl"
+    WORDPRESS_DATABASE_USER: "f1endaal"
+    WORDPRESS_DATABASE_HOST: "mariadb-service"
+    WORDPRESS_AUTO_UPDATE_LEVEL: "minor"
+    WORDPRESS_BLOG_NAME: "F1endaal"
+    WORDPRESS_ENABLE_HTTPS: "yes"
+    WORDPRESS_ENABLE_REVERSE_PROXY: "yes"
